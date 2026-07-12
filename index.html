@@ -7,20 +7,21 @@
   <meta name="description" content="Blake Lewis — Product Stylist & Interaction Designer. Nike, Jordan, Converse. Based in Los Angeles.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #080808;
-      --surface: #0F0F0F;
-      --card: #141414;
-      --border: #1E1E1E;
-      --border-light: #2A2A2A;
-      --text: #EEEAE2;
-      --text-mid: #888880;
-      --text-dim: #444440;
+      --black: #0b0e13;
+      --surface: #12161c;
+      --card: #171b22;
+      --border: #232830;
+      --border-light: #2f3540;
+      --text: #f0f6f8;
+      --text-mid: #a5abad;
+      --text-dim: #5b6168;
       --accent: #C8F26B;
+      --font-display: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
       --t: 0.28s cubic-bezier(0.4,0,0.2,1);
     }
 
@@ -38,17 +39,20 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 32px;
-      background: rgba(8,8,8,0.88);
-      backdrop-filter: blur(16px);
+      background: transparent;
+      backdrop-filter: none;
       border-bottom: 0.5px solid transparent;
-      transition: border-color 0.4s;
+      transition: background .4s, backdrop-filter .4s, border-color .4s;
     }
-    nav.scrolled { border-color: var(--border); }
+    nav.scrolled { background: rgba(11,14,19,0.88); backdrop-filter: blur(16px); border-color: var(--border); }
 
     .logo {
-      font-size: 22px; font-style: italic; font-weight: 300;
+      display: flex; align-items: center;
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700;
       color: var(--text); text-decoration: none; letter-spacing: -0.3px;
     }
+    .logo-img { height: 26px; width: auto; display: block; }
 
     .nav-center {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -66,7 +70,7 @@
     .nav-right { display: flex; align-items: center; gap: 20px; }
     .nav-link {
       font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-dim); text-decoration: none; transition: color .2s;
+      color: var(--text-mid); text-decoration: none; transition: color .2s;
     }
     .nav-link:hover { color: var(--text); }
 
@@ -93,8 +97,9 @@
     .overlay-nav { list-style: none; }
     .overlay-nav li { border-bottom: 0.5px solid var(--border); }
     .overlay-nav a {
-      display: block; font-size: clamp(40px,8vw,80px); font-weight: 900;
-      text-transform: uppercase; letter-spacing: -.04em;
+      display: block; font-family: var(--font-display);
+      font-size: clamp(40px,8vw,80px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: -.03em;
       color: var(--text-dim); text-decoration: none; padding: 14px 0;
       transition: color .2s;
     }
@@ -108,49 +113,64 @@
 
     /* ─── HERO ─── */
     .hero {
+      position: relative;
       min-height: 100svh;
-      display: grid; grid-template-rows: 1fr auto;
-      padding: 100px 32px 40px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(30%) brightness(.6);
+    }
+    .hero-bg-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,14,19,.55) 0%, rgba(11,14,19,.35) 42%, rgba(11,14,19,.94) 100%);
     }
 
-    .hero-top {
-      display: flex; flex-direction: column; justify-content: flex-end;
+    .hero-content {
+      position: relative; z-index: 1; flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 32px 40px;
     }
 
     .hero-kicker {
       font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--text-dim); margin-bottom: 20px;
+      color: var(--text-mid); margin-bottom: 24px;
     }
 
     .hero-h1 {
-      font-size: clamp(64px, 13vw, 140px);
-      font-weight: 900; line-height: .88;
-      letter-spacing: -.045em; text-transform: uppercase;
-      color: var(--text); margin-bottom: 0;
+      font-family: var(--font-display);
+      font-size: clamp(44px, 8.5vw, 108px);
+      font-weight: 700; line-height: .96;
+      letter-spacing: -.03em; text-transform: uppercase;
+      color: var(--text); max-width: 16ch;
     }
 
     .hero-h1 em {
+      font-family: 'Inter', sans-serif;
       font-style: italic; font-weight: 300;
-      color: var(--text-dim);
+      color: var(--text-mid);
     }
 
-    .hero-bottom {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      padding-top: 40px; flex-wrap: wrap; gap: 20px;
-      border-top: 0.5px solid var(--border); margin-top: 40px;
-    }
-
-    .hero-desc {
-      font-size: 12px; line-height: 2; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--text-dim); max-width: 260px;
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 12px; line-height: 2; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--text-mid); max-width: 380px;
     }
 
     .hero-scroll {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding-bottom: 36px;
       font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--text-dim); display: flex; align-items: center; gap: 12px;
+      color: var(--text-mid);
     }
-    .hero-scroll::after {
-      content: ''; display: block; width: 48px; height: .5px; background: var(--text-dim);
+    .hero-scroll::before, .hero-scroll::after {
+      content: ''; display: block; width: 40px; height: .5px; background: var(--text-dim);
     }
 
     /* ─── MARQUEE ─── */
@@ -182,69 +202,76 @@
     }
     .hr { border: none; border-top: .5px solid var(--border); }
 
-    /* ─── WORK LIST ─── */
-    .work-list { list-style: none; }
-    .work-item {
-      display: grid;
-      grid-template-columns: 52px 1fr auto;
-      align-items: center; gap: 0;
-      padding: 0 32px;
+    /* ─── WORK GRID (card-based) ─── */
+    .work-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2px; background: var(--border);
+      margin-top: 16px;
+      border-top: .5px solid var(--border);
       border-bottom: .5px solid var(--border);
-      text-decoration: none;
-      position: relative; overflow: hidden;
-      min-height: 88px;
-      transition: background var(--t);
     }
-    .work-item::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--surface); opacity: 0; transition: opacity var(--t);
-    }
-    .work-item:hover::after { opacity: 1; }
-    .work-item:hover .wi-title { color: var(--text); }
-    .work-item:hover .wi-arrow { opacity: 1; transform: translateX(0); }
-    .work-item:hover .wi-img-thumb { opacity: 1; transform: scale(1.04); }
 
-    .wi-num {
-      font-size: 10px; color: var(--text-dim); letter-spacing: .06em;
-      position: relative; z-index: 1;
+    .work-card {
+      position: relative; aspect-ratio: 4/3; overflow: hidden;
+      background: var(--surface); text-decoration: none; display: block;
     }
-    .wi-center {
-      display: flex; align-items: center; gap: 20px;
-      padding: 20px 0; position: relative; z-index: 1;
+    .work-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(15%) brightness(.82);
+      transition: transform .8s cubic-bezier(.4,0,.2,1), filter .5s;
     }
-    .wi-img-thumb {
-      width: 52px; height: 36px; object-fit: cover; border-radius: 2px;
-      opacity: 0; transition: opacity var(--t), transform var(--t);
-      flex-shrink: 0;
+    .work-card:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(1); }
+
+    .work-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,14,19,0) 45%, rgba(11,14,19,.92) 100%);
     }
-    .wi-title {
-      font-size: clamp(18px, 3vw, 30px); font-weight: 800;
-      text-transform: uppercase; letter-spacing: -.025em;
-      color: var(--text-dim); transition: color var(--t);
+    .work-card-num {
+      position: absolute; top: 20px; left: 24px; z-index: 1;
+      font-size: 10px; letter-spacing: .1em; color: rgba(240,246,248,.7);
     }
-    .wi-right {
-      display: flex; align-items: center; gap: 16px;
-      position: relative; z-index: 1; flex-shrink: 0;
+    .work-card-content {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      padding: 22px 26px;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
     }
-    .wi-type {
-      font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--text-dim); text-align: right;
+    .work-card-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.4vw, 28px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: -.02em; color: var(--text);
+      line-height: 1.05;
     }
-    .wi-type.ixd { color: #666; }
-    .wi-type.ixd::before { content: '✦  '; font-size: 7px; }
-    .wi-arrow {
-      font-size: 16px; color: var(--text);
-      opacity: 0; transform: translateX(-10px); transition: all var(--t);
+    .work-card-type {
+      font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-mid); margin-top: 6px;
+    }
+    .work-card-arrow {
+      font-size: 18px; color: var(--accent); flex-shrink: 0;
+      opacity: 0; transform: translateX(-8px); transition: all var(--t);
+    }
+    .work-card:hover .work-card-arrow { opacity: 1; transform: translateX(0); }
+
+    .img-placeholder-card {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--card); border: .5px dashed var(--border-light);
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); text-align: center; padding: 16px;
+    }
+
+    @media(min-width: 900px) {
+      .work-card.wc-wide { grid-column: span 2; aspect-ratio: 21/9; }
     }
 
     /* ─── IMAGE GRID (Styling + Graphics) ─── */
-    .image-grid-section { padding: 64px 32px; }
+    .image-grid-section { padding: 72px 32px; }
     .image-grid-title {
-      font-size: clamp(32px,6vw,64px); font-weight: 900;
-      text-transform: uppercase; letter-spacing: -.04em;
-      color: var(--text); margin-bottom: 32px; line-height: .95;
+      font-family: var(--font-display);
+      font-size: clamp(30px,5.5vw,58px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: -.03em;
+      color: var(--text); margin-bottom: 32px; line-height: .98;
     }
-    .image-grid-title span { color: var(--text-dim); font-weight: 300; font-style: italic; }
+    .image-grid-title span { color: var(--text-mid); font-weight: 500; }
 
     .img-grid {
       display: grid;
@@ -274,8 +301,8 @@
     .img-cell-label {
       position: absolute; bottom: 12px; left: 14px;
       font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(238,234,226,.6);
-      background: rgba(8,8,8,.6); padding: 4px 8px; border-radius: 2px;
+      color: rgba(240,246,248,.7);
+      background: rgba(11,14,19,.6); padding: 4px 8px; border-radius: 2px;
     }
 
     /* Placeholder for images not yet added */
@@ -306,13 +333,14 @@
 
     .cs-tag {
       font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
-      color: #555; margin-bottom: 20px;
+      color: var(--text-dim); margin-bottom: 20px;
       display: flex; align-items: center; gap: 6px;
     }
     .cs-tag::before { content: '✦'; font-size: 7px; color: var(--accent); }
 
     .cs-title {
-      font-size: 22px; font-weight: 800; text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 700; text-transform: uppercase;
       letter-spacing: -.02em; color: var(--text); line-height: 1.1;
       margin-bottom: 14px;
     }
@@ -323,7 +351,7 @@
     .cs-pill {
       font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
       border: .5px solid var(--border-light); padding: 4px 9px;
-      border-radius: 2px; color: #444;
+      border-radius: 2px; color: var(--text-dim);
     }
     .cs-arrow {
       font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
@@ -342,9 +370,10 @@
       padding: 72px 32px; border-right: .5px solid var(--border);
     }
     .about-name {
-      font-size: clamp(52px,9vw,96px); font-weight: 900;
-      text-transform: uppercase; letter-spacing: -.045em;
-      color: var(--text-dim); line-height: .88; margin-bottom: 40px;
+      font-family: var(--font-display);
+      font-size: clamp(48px,8vw,88px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: -.03em;
+      color: var(--text-dim); line-height: .92; margin-bottom: 40px;
     }
     .about-tagline {
       font-size: 14px; font-style: italic; font-weight: 300;
@@ -355,7 +384,7 @@
     .client-chip {
       font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
       border: .5px solid var(--border-light); padding: 5px 12px;
-      border-radius: 100px; color: #555;
+      border-radius: 100px; color: var(--text-mid);
     }
 
     .about-right { padding: 72px 32px; }
@@ -366,7 +395,8 @@
     .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .stat-item {}
     .stat-num {
-      font-size: 36px; font-weight: 900; letter-spacing: -.03em;
+      font-family: var(--font-display);
+      font-size: 34px; font-weight: 700; letter-spacing: -.02em;
       color: var(--text); line-height: 1; margin-bottom: 4px;
     }
     .stat-label {
@@ -393,9 +423,10 @@
     @media(max-width:600px){
       nav { padding: 16px 20px; }
       .nav-center { display: none; }
-      .hero { padding: 90px 20px 36px; }
+      .hero-content { padding: 110px 20px 32px; }
       .section-header { padding: 24px 20px 0; }
-      .work-item { padding: 0 20px; grid-template-columns: 36px 1fr auto; }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card, .work-card.wc-wide { aspect-ratio: 4/3; grid-column: span 1; }
       .image-grid-section { padding: 48px 20px; }
       .img-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
       .img-a { grid-column:1/3; grid-row:1; }
@@ -429,7 +460,7 @@
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a class="logo" href="/">bl</a>
+  <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
   <div class="nav-center">
     <div class="avail-dot"></div>
     <span class="avail-text">Available for freelance</span>
@@ -445,22 +476,19 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-top">
+  <div class="hero-bg">
+    <img src="images/nike-thumb.jpg" alt="" onerror="this.style.display='none'">
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content">
     <p class="hero-kicker">Blake Lewis · Los Angeles, CA · 2025</p>
-    <h1 class="hero-h1">
-      Styling<br>
-      <em>Design</em> +<br>
-      Direction
-    </h1>
-  </div>
-  <div class="hero-bottom">
-    <p class="hero-desc">
+    <h1 class="hero-h1">Styling. <em>Design</em> + Direction.</h1>
+    <p class="hero-sub">
       Product Stylist · Nike / Jordan / Converse<br>
-      Interaction Designer · SMC IxD Program<br>
-      Culture · Lifestyle · Branding
+      Interaction Designer · SMC IxD Program
     </p>
-    <span class="hero-scroll">Scroll</span>
   </div>
+  <span class="hero-scroll">Scroll</span>
 </section>
 
 <!-- MARQUEE -->
@@ -492,134 +520,133 @@
   </div>
 </div>
 
-<!-- WORK LIST -->
+<!-- WORK GRID -->
 <section id="work">
   <div class="section-header">
     <span class="section-label">Selected work</span>
     <span class="section-label">08 projects</span>
   </div>
-  <ul class="work-list" style="margin-top:12px;">
+  <div class="work-grid">
 
-    <li>
-      <a class="work-item" href="case-studies/good-vibe.html">
-        <span class="wi-num">01</span>
-        <div class="wi-center">
-          <!-- swap src to your actual image path once uploaded -->
-          <img class="wi-img-thumb" src="images/goodvibe-thumb.jpg" alt="Good Vibe Barbershop" onerror="this.style.display='none'">
-          <span class="wi-title">Good Vibe Barbershop</span>
+    <a class="work-card wc-wide" href="case-studies/good-vibe.html">
+      <span class="work-card-num">01</span>
+      <img src="images/goodvibe-thumb.jpg" alt="Good Vibe Barbershop"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/goodvibe-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Good Vibe Barbershop</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type ixd">Experience Design</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="case-studies/onpoint.html">
-        <span class="wi-num">02</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/onpoint-thumb.jpg" alt="OnPoint Casino" onerror="this.style.display='none'">
-          <span class="wi-title">OnPoint Casino</span>
+    <a class="work-card" href="case-studies/onpoint.html">
+      <span class="work-card-num">02</span>
+      <img src="images/onpoint-thumb.jpg" alt="OnPoint Casino"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/onpoint-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">OnPoint Casino</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type ixd">Experience Design</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="#">
-        <span class="wi-num">03</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/nike-thumb.jpg" alt="Nike" onerror="this.style.display='none'">
-          <span class="wi-title">Nike / Jordan / Converse</span>
+    <a class="work-card" href="#styling">
+      <span class="work-card-num">03</span>
+      <img src="images/nike-thumb.jpg" alt="Nike"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/nike-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Nike / Jordan / Converse</p>
+          <p class="work-card-type">Still Life · E-Commerce</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type">Still Life · E-Commerce</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="case-studies/bridgeline.html">
-        <span class="wi-num">04</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/bridgeline-thumb.jpg" alt="Bridgeline" onerror="this.style.display='none'">
-          <span class="wi-title">Bridgeline Construction</span>
+    <a class="work-card" href="case-studies/bridgeline.html">
+      <span class="work-card-num">04</span>
+      <img src="images/bridgeline-thumb.jpg" alt="Bridgeline"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/bridgeline-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Bridgeline Construction</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type ixd">Experience Design</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="#">
-        <span class="wi-num">05</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/tyga-thumb.jpg" alt="Tyga" onerror="this.style.display='none'">
-          <span class="wi-title">Tyga</span>
+    <a class="work-card" href="#styling">
+      <span class="work-card-num">05</span>
+      <img src="images/tyga-thumb.jpg" alt="Tyga"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/tyga-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Tyga</p>
+          <p class="work-card-type">Creative Direction · Styling</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type">Creative Direction · Styling</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="#">
-        <span class="wi-num">06</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/graphics-thumb.jpg" alt="Graphics" onerror="this.style.display='none'">
-          <span class="wi-title">Graphics</span>
+    <a class="work-card" href="#styling">
+      <span class="work-card-num">06</span>
+      <img src="images/graphics-thumb.jpg" alt="Graphics"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/graphics-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Graphics</p>
+          <p class="work-card-type">Graphic Design</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type">Graphic Design</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="#">
-        <span class="wi-num">07</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/sorella-thumb.jpg" alt="Sorella" onerror="this.style.display='none'">
-          <span class="wi-title">Sorella Boutique</span>
+    <a class="work-card" href="#styling">
+      <span class="work-card-num">07</span>
+      <img src="images/sorella-thumb.jpg" alt="Sorella"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/sorella-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Sorella Boutique</p>
+          <p class="work-card-type">Fashion · Direction</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type">Fashion · Direction</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-    <li>
-      <a class="work-item" href="#">
-        <span class="wi-num">08</span>
-        <div class="wi-center">
-          <img class="wi-img-thumb" src="images/sustain-thumb.jpg" alt="Sustain-A-Ball" onerror="this.style.display='none'">
-          <span class="wi-title">Sustain-A-Ball</span>
+    <a class="work-card" href="#styling">
+      <span class="work-card-num">08</span>
+      <img src="images/sustain-thumb.jpg" alt="Sustain-A-Ball"
+           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/sustain-thumb.jpg&lt;/div&gt;'">
+      <div class="work-card-overlay"></div>
+      <div class="work-card-content">
+        <div>
+          <p class="work-card-title">Sustain-A-Ball</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
-        <div class="wi-right">
-          <span class="wi-type ixd">Experience Design</span>
-          <span class="wi-arrow">→</span>
-        </div>
-      </a>
-    </li>
+        <span class="work-card-arrow">→</span>
+      </div>
+    </a>
 
-  </ul>
+  </div>
 </section>
 
 <!-- STYLING + GRAPHICS IMAGE GRID -->
 <section class="image-grid-section" id="styling">
   <h2 class="image-grid-title">
-    Product <span>Styling</span><br>+ Graphics
+    Product <span>Styling</span> + Graphics
   </h2>
 
   <div class="img-grid">
