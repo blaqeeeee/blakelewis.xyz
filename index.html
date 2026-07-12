@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blake Lewis — Styling, Design + Direction</title>
+  <meta name="description" content="Blake Lewis — Product Stylist & Interaction Designer. Nike, Jordan, Converse. Based in Los Angeles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --surface: #0F0F0F;
+      --card: #141414;
+      --border: #1E1E1E;
+      --border-light: #2A2A2A;
+      --text: #EEEAE2;
+      --text-mid: #888880;
+      --text-dim: #444440;
+      --accent: #C8F26B;
+      --t: 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px;
+      background: rgba(8,8,8,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid transparent;
+      transition: border-color 0.4s;
+    }
+    nav.scrolled { border-color: var(--border); }
+
+    .logo {
+      font-size: 22px; font-style: italic; font-weight: 300;
+      color: var(--text); text-decoration: none; letter-spacing: -0.3px;
+    }
+
+    .nav-center {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+      animation: blink 3s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .avail-text {
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link {
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none; transition: color .2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    .burger { background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:5px; padding:4px; }
+    .burger span { display:block; width:22px; height:1px; background:var(--text); transition: var(--t); }
+    .burger:hover span { background: var(--accent); }
+
+    /* ─── MENU OVERLAY ─── */
+    .overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: var(--black);
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s ease;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 40px;
+    }
+    .overlay.open { opacity: 1; pointer-events: all; }
+    .overlay-close {
+      position: absolute; top: 20px; right: 32px;
+      font-size: 32px; line-height: 1; background: none; border: none;
+      color: var(--text-dim); cursor: pointer; transition: color .2s;
+    }
+    .overlay-close:hover { color: var(--text); }
+    .overlay-nav { list-style: none; }
+    .overlay-nav li { border-bottom: 0.5px solid var(--border); }
+    .overlay-nav a {
+      display: block; font-size: clamp(40px,8vw,80px); font-weight: 900;
+      text-transform: uppercase; letter-spacing: -.04em;
+      color: var(--text-dim); text-decoration: none; padding: 14px 0;
+      transition: color .2s;
+    }
+    .overlay-nav a:hover { color: var(--text); }
+    .overlay-footer { margin-top: 40px; display: flex; gap: 28px; }
+    .overlay-footer a {
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none; transition: color .2s;
+    }
+    .overlay-footer a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      display: grid; grid-template-rows: 1fr auto;
+      padding: 100px 32px 40px;
+    }
+
+    .hero-top {
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+
+    .hero-kicker {
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 20px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(64px, 13vw, 140px);
+      font-weight: 900; line-height: .88;
+      letter-spacing: -.045em; text-transform: uppercase;
+      color: var(--text); margin-bottom: 0;
+    }
+
+    .hero-h1 em {
+      font-style: italic; font-weight: 300;
+      color: var(--text-dim);
+    }
+
+    .hero-bottom {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      padding-top: 40px; flex-wrap: wrap; gap: 20px;
+      border-top: 0.5px solid var(--border); margin-top: 40px;
+    }
+
+    .hero-desc {
+      font-size: 12px; line-height: 2; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-dim); max-width: 260px;
+    }
+
+    .hero-scroll {
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-dim); display: flex; align-items: center; gap: 12px;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 48px; height: .5px; background: var(--text-dim);
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      overflow: hidden; border-top: .5px solid var(--border);
+      border-bottom: .5px solid var(--border);
+      padding: 14px 0; white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: scroll-left 22s linear infinite;
+    }
+    @keyframes scroll-left { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-item {
+      font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-dim); padding: 0 28px;
+    }
+    .marquee-dot {
+      color: var(--accent); font-size: 8px; vertical-align: middle;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 32px 0;
+    }
+    .section-label {
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim);
+    }
+    .hr { border: none; border-top: .5px solid var(--border); }
+
+    /* ─── WORK LIST ─── */
+    .work-list { list-style: none; }
+    .work-item {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center; gap: 0;
+      padding: 0 32px;
+      border-bottom: .5px solid var(--border);
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      min-height: 88px;
+      transition: background var(--t);
+    }
+    .work-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--surface); opacity: 0; transition: opacity var(--t);
+    }
+    .work-item:hover::after { opacity: 1; }
+    .work-item:hover .wi-title { color: var(--text); }
+    .work-item:hover .wi-arrow { opacity: 1; transform: translateX(0); }
+    .work-item:hover .wi-img-thumb { opacity: 1; transform: scale(1.04); }
+
+    .wi-num {
+      font-size: 10px; color: var(--text-dim); letter-spacing: .06em;
+      position: relative; z-index: 1;
+    }
+    .wi-center {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 0; position: relative; z-index: 1;
+    }
+    .wi-img-thumb {
+      width: 52px; height: 36px; object-fit: cover; border-radius: 2px;
+      opacity: 0; transition: opacity var(--t), transform var(--t);
+      flex-shrink: 0;
+    }
+    .wi-title {
+      font-size: clamp(18px, 3vw, 30px); font-weight: 800;
+      text-transform: uppercase; letter-spacing: -.025em;
+      color: var(--text-dim); transition: color var(--t);
+    }
+    .wi-right {
+      display: flex; align-items: center; gap: 16px;
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .wi-type {
+      font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-dim); text-align: right;
+    }
+    .wi-type.ixd { color: #666; }
+    .wi-type.ixd::before { content: '✦  '; font-size: 7px; }
+    .wi-arrow {
+      font-size: 16px; color: var(--text);
+      opacity: 0; transform: translateX(-10px); transition: all var(--t);
+    }
+
+    /* ─── IMAGE GRID (Styling + Graphics) ─── */
+    .image-grid-section { padding: 64px 32px; }
+    .image-grid-title {
+      font-size: clamp(32px,6vw,64px); font-weight: 900;
+      text-transform: uppercase; letter-spacing: -.04em;
+      color: var(--text); margin-bottom: 32px; line-height: .95;
+    }
+    .image-grid-title span { color: var(--text-dim); font-weight: 300; font-style: italic; }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 8px;
+    }
+
+    /* Styling images layout — editorial asymmetric */
+    .img-a { grid-column: 1/8; grid-row: 1/3; aspect-ratio: 4/3; }
+    .img-b { grid-column: 8/13; grid-row: 1; aspect-ratio: 4/3; }
+    .img-c { grid-column: 8/13; grid-row: 2; aspect-ratio: 4/3; }
+    .img-d { grid-column: 1/5; grid-row: 3; aspect-ratio: 1; }
+    .img-e { grid-column: 5/9; grid-row: 3; aspect-ratio: 1; }
+    .img-f { grid-column: 9/13; grid-row: 3; aspect-ratio: 1; }
+
+    .img-cell {
+      overflow: hidden; border-radius: 2px; position: relative;
+      background: var(--card);
+    }
+    .img-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+      display: block;
+    }
+    .img-cell:hover img { transform: scale(1.05); }
+    .img-cell-label {
+      position: absolute; bottom: 12px; left: 14px;
+      font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(238,234,226,.6);
+      background: rgba(8,8,8,.6); padding: 4px 8px; border-radius: 2px;
+    }
+
+    /* Placeholder for images not yet added */
+    .img-placeholder {
+      width:100%; height:100%; min-height:200px;
+      display:flex; align-items:center; justify-content:center;
+      background: var(--card); border: .5px dashed var(--border-light);
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); text-align: center; padding: 16px;
+    }
+
+    /* ─── CASE STUDIES FEATURED ─── */
+    .cs-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--border);
+      border-top: .5px solid var(--border);
+    }
+    @media(max-width:768px){ .cs-grid{ grid-template-columns:1fr; } }
+
+    .cs-card {
+      background: var(--black); padding: 36px 28px;
+      text-decoration: none; display: block;
+      transition: background var(--t);
+      position: relative;
+    }
+    .cs-card:hover { background: var(--surface); }
+    .cs-card:hover .cs-arrow { opacity:1; transform:translateX(0); }
+
+    .cs-tag {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      color: #555; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cs-tag::before { content: '✦'; font-size: 7px; color: var(--accent); }
+
+    .cs-title {
+      font-size: 22px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: -.02em; color: var(--text); line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .cs-desc {
+      font-size: 12px; color: var(--text-mid); line-height: 1.75; margin-bottom: 24px;
+    }
+    .cs-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .cs-pill {
+      font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+      border: .5px solid var(--border-light); padding: 4px 9px;
+      border-radius: 2px; color: #444;
+    }
+    .cs-arrow {
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text); opacity: 0;
+      transform: translateX(-6px); transition: all var(--t);
+    }
+
+    /* ─── ABOUT ─── */
+    .about-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border-top: .5px solid var(--border);
+    }
+    @media(max-width:768px){ .about-section{ grid-template-columns:1fr; } }
+
+    .about-left {
+      padding: 72px 32px; border-right: .5px solid var(--border);
+    }
+    .about-name {
+      font-size: clamp(52px,9vw,96px); font-weight: 900;
+      text-transform: uppercase; letter-spacing: -.045em;
+      color: var(--text-dim); line-height: .88; margin-bottom: 40px;
+    }
+    .about-tagline {
+      font-size: 14px; font-style: italic; font-weight: 300;
+      color: var(--text-mid); line-height: 1.8; margin-bottom: 32px;
+      border-left: 2px solid var(--border-light); padding-left: 20px;
+    }
+    .client-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .client-chip {
+      font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+      border: .5px solid var(--border-light); padding: 5px 12px;
+      border-radius: 100px; color: #555;
+    }
+
+    .about-right { padding: 72px 32px; }
+    .about-bio {
+      font-size: 15px; line-height: 1.9; color: var(--text-mid);
+      margin-bottom: 32px;
+    }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .stat-item {}
+    .stat-num {
+      font-size: 36px; font-weight: 900; letter-spacing: -.03em;
+      color: var(--text); line-height: 1; margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: .5px solid var(--border);
+      padding: 24px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 10px; color: var(--text-dim); letter-spacing: .06em; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ─── MOBILE ─── */
+    @media(max-width:600px){
+      nav { padding: 16px 20px; }
+      .nav-center { display: none; }
+      .hero { padding: 90px 20px 36px; }
+      .section-header { padding: 24px 20px 0; }
+      .work-item { padding: 0 20px; grid-template-columns: 36px 1fr auto; }
+      .image-grid-section { padding: 48px 20px; }
+      .img-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+      .img-a { grid-column:1/3; grid-row:1; }
+      .img-b { grid-column:1/3; grid-row:2; }
+      .img-c,.img-d,.img-e,.img-f { grid-column:span 1; grid-row:auto; }
+      .about-left,.about-right { padding: 48px 20px; }
+      .about-left { border-right:none; border-bottom:.5px solid var(--border); }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- OVERLAY MENU -->
+<div class="overlay" id="overlay">
+  <button class="overlay-close" id="overlayClose">×</button>
+  <ul class="overlay-nav">
+    <li><a href="#work" onclick="closeMenu()">Work</a></li>
+    <li><a href="#styling" onclick="closeMenu()">Styling</a></li>
+    <li><a href="case-studies/good-vibe.html">Good Vibe</a></li>
+    <li><a href="case-studies/onpoint.html">OnPoint</a></li>
+    <li><a href="case-studies/bridgeline.html">Bridgeline</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+  </ul>
+  <div class="overlay-footer">
+    <a href="mailto:hello@blakelewis.xyz">Email</a>
+    <a href="https://linkedin.com/in/blakelewis" target="_blank">LinkedIn</a>
+    <a href="https://instagram.com/blakelewis" target="_blank">Instagram</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="logo" href="/">bl</a>
+  <div class="nav-center">
+    <div class="avail-dot"></div>
+    <span class="avail-text">Available for freelance</span>
+  </div>
+  <div class="nav-right">
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="mailto:hello@blakelewis.xyz">Contact</a>
+    <button class="burger" id="burger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <p class="hero-kicker">Blake Lewis · Los Angeles, CA · 2025</p>
+    <h1 class="hero-h1">
+      Styling<br>
+      <em>Design</em> +<br>
+      Direction
+    </h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Product Stylist · Nike / Jordan / Converse<br>
+      Interaction Designer · SMC IxD Program<br>
+      Culture · Lifestyle · Branding
+    </p>
+    <span class="hero-scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Nike</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Jordan</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Converse</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Still Life</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">E-Commerce</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">UX Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Tyga</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sorella Boutique</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Los Angeles</span><span class="marquee-dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Nike</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Jordan</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Converse</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Still Life</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">E-Commerce</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">UX Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Tyga</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Direction</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sorella Boutique</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Interaction Design</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Los Angeles</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- WORK LIST -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-label">Selected work</span>
+    <span class="section-label">08 projects</span>
+  </div>
+  <ul class="work-list" style="margin-top:12px;">
+
+    <li>
+      <a class="work-item" href="case-studies/good-vibe.html">
+        <span class="wi-num">01</span>
+        <div class="wi-center">
+          <!-- swap src to your actual image path once uploaded -->
+          <img class="wi-img-thumb" src="images/goodvibe-thumb.jpg" alt="Good Vibe Barbershop" onerror="this.style.display='none'">
+          <span class="wi-title">Good Vibe Barbershop</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type ixd">Experience Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="case-studies/onpoint.html">
+        <span class="wi-num">02</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/onpoint-thumb.jpg" alt="OnPoint Casino" onerror="this.style.display='none'">
+          <span class="wi-title">OnPoint Casino</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type ixd">Experience Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="#">
+        <span class="wi-num">03</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/nike-thumb.jpg" alt="Nike" onerror="this.style.display='none'">
+          <span class="wi-title">Nike / Jordan / Converse</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type">Still Life · E-Commerce</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="case-studies/bridgeline.html">
+        <span class="wi-num">04</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/bridgeline-thumb.jpg" alt="Bridgeline" onerror="this.style.display='none'">
+          <span class="wi-title">Bridgeline Construction</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type ixd">Experience Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="#">
+        <span class="wi-num">05</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/tyga-thumb.jpg" alt="Tyga" onerror="this.style.display='none'">
+          <span class="wi-title">Tyga</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type">Creative Direction · Styling</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="#">
+        <span class="wi-num">06</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/graphics-thumb.jpg" alt="Graphics" onerror="this.style.display='none'">
+          <span class="wi-title">Graphics</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type">Graphic Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="#">
+        <span class="wi-num">07</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/sorella-thumb.jpg" alt="Sorella" onerror="this.style.display='none'">
+          <span class="wi-title">Sorella Boutique</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type">Fashion · Direction</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-item" href="#">
+        <span class="wi-num">08</span>
+        <div class="wi-center">
+          <img class="wi-img-thumb" src="images/sustain-thumb.jpg" alt="Sustain-A-Ball" onerror="this.style.display='none'">
+          <span class="wi-title">Sustain-A-Ball</span>
+        </div>
+        <div class="wi-right">
+          <span class="wi-type ixd">Experience Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </a>
+    </li>
+
+  </ul>
+</section>
+
+<!-- STYLING + GRAPHICS IMAGE GRID -->
+<section class="image-grid-section" id="styling">
+  <h2 class="image-grid-title">
+    Product <span>Styling</span><br>+ Graphics
+  </h2>
+
+  <div class="img-grid">
+
+    <!-- LARGE LEFT — Nike shoe close-up or beauty supply editorial -->
+    <div class="img-cell img-a">
+      <img src="images/styling-01.jpg" alt="Product styling"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-01.jpg<br>Nike / Jordan shoot</div>'">
+      <span class="img-cell-label">Nike · Still Life</span>
+    </div>
+
+    <!-- TOP RIGHT -->
+    <div class="img-cell img-b">
+      <img src="images/styling-02.jpg" alt="Styling"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-02.jpg<br>Editorial / campaign</div>'">
+      <span class="img-cell-label">Editorial</span>
+    </div>
+
+    <!-- BOTTOM RIGHT -->
+    <div class="img-cell img-c">
+      <img src="images/graphics-01.jpg" alt="Graphics"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/graphics-01.jpg<br>DUMB Magazine / LEGO</div>'">
+      <span class="img-cell-label">Graphics</span>
+    </div>
+
+    <!-- BOTTOM ROW 3-UP -->
+    <div class="img-cell img-d">
+      <img src="images/styling-03.jpg" alt="Styling"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-03.jpg</div>'">
+      <span class="img-cell-label">Converse</span>
+    </div>
+
+    <div class="img-cell img-e">
+      <img src="images/sorella-01.jpg" alt="Sorella"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/sorella-01.jpg<br>Sorella Boutique</div>'">
+      <span class="img-cell-label">Sorella Boutique</span>
+    </div>
+
+    <div class="img-cell img-f">
+      <img src="images/tyga-01.jpg" alt="Tyga"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/tyga-01.jpg<br>Tyga · Music Video</div>'">
+      <span class="img-cell-label">Tyga · Music Video</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURED CASE STUDIES -->
+<hr class="hr">
+<div class="section-header" style="margin-bottom:0;">
+  <span class="section-label">Featured case studies</span>
+  <span class="section-label">Experience Design</span>
+</div>
+<div class="cs-grid" style="margin-top:12px;">
+
+  <a class="cs-card" href="case-studies/good-vibe.html">
+    <p class="cs-tag">Experience Design</p>
+    <h3 class="cs-title">Good Vibe Barbershop</h3>
+    <p class="cs-desc">Full brand identity + responsive website redesign. Research to final UI — end to end.</p>
+    <div class="cs-pills">
+      <span class="cs-pill">Brand Identity</span>
+      <span class="cs-pill">Wireframes</span>
+      <span class="cs-pill">User Journey</span>
+      <span class="cs-pill">Figma</span>
+    </div>
+    <span class="cs-arrow">View case study →</span>
+  </a>
+
+  <a class="cs-card" href="case-studies/onpoint.html">
+    <p class="cs-tag">Experience Design</p>
+    <h3 class="cs-title">OnPoint Casino</h3>
+    <p class="cs-desc">UX redesign for a social casino. Three research methods. 80% peer preference. 60% clarity gain.</p>
+    <div class="cs-pills">
+      <span class="cs-pill">Competitive Analysis</span>
+      <span class="cs-pill">Heuristic Eval</span>
+      <span class="cs-pill">UI Design</span>
+      <span class="cs-pill">Figma</span>
+    </div>
+    <span class="cs-arrow">View case study →</span>
+  </a>
+
+  <a class="cs-card" href="case-studies/bridgeline.html">
+    <p class="cs-tag">Experience Design</p>
+    <h3 class="cs-title">Bridgeline Construction</h3>
+    <p class="cs-desc">Social strategy + visual content system for an investor-facing real estate development firm.</p>
+    <div class="cs-pills">
+      <span class="cs-pill">Social Strategy</span>
+      <span class="cs-pill">Brand System</span>
+      <span class="cs-pill">Real Client</span>
+      <span class="cs-pill">Figma</span>
+    </div>
+    <span class="cs-arrow">View case study →</span>
+  </a>
+
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-left">
+    <h2 class="about-name">Blake<br>Lewis</h2>
+    <p class="about-tagline">
+      "Product stylist and interaction designer. I make things look intentional — whether it's a sneaker on a white background or a UI flow that gets someone to click."
+    </p>
+    <div class="client-list">
+      <span class="client-chip">Nike</span>
+      <span class="client-chip">Jordan</span>
+      <span class="client-chip">Converse</span>
+      <span class="client-chip">SNKRS</span>
+      <span class="client-chip">Tyga</span>
+      <span class="client-chip">Sorella Boutique</span>
+      <span class="client-chip">Bridgeline</span>
+      <span class="client-chip">SMC IxD</span>
+    </div>
+  </div>
+  <div class="about-right">
+    <p class="about-bio">
+      Based in Los Angeles. Since 2019 I've been styling for Nike, Jordan, and Converse — seasonal launches, high-profile products, still-life shoots, and co-creating global style guides alongside art direction teams.<br><br>
+      Currently in the Interaction Design program at Santa Monica College, building at the intersection of craft, visual communication, and digital experience. I bring the same eye for composition and hierarchy to interfaces that I bring to a product shoot.
+    </p>
+    <div class="about-stats">
+      <div class="stat-item">
+        <p class="stat-num">6+</p>
+        <p class="stat-label">Years styling for Nike ecosystem</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">3</p>
+        <p class="stat-label">IxD case studies, first semester</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">LA</p>
+        <p class="stat-label">Based · available for freelance</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-num">Open</p>
+        <p class="stat-label">Creative + design roles</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
+  <div class="footer-links">
+    <a href="mailto:hello@blakelewis.xyz">Email</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll nav border
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), {passive:true});
+
+  // Burger / overlay
+  const burger = document.getElementById('burger');
+  const overlay = document.getElementById('overlay');
+  const overlayClose = document.getElementById('overlayClose');
+
+  burger.addEventListener('click', () => {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeMenu() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  overlayClose.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeMenu(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+</script>
+</body>
+</html>
