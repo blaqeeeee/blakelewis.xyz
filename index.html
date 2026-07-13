@@ -252,57 +252,6 @@
       .work-card.wc-wide { grid-column: span 2; aspect-ratio: 21/9; }
     }
 
-    /* ─── IMAGE GRID (Styling + Graphics) ─── */
-    .image-grid-section { padding: 72px 32px; }
-    .image-grid-title {
-      font-family: var(--font-display);
-      font-size: clamp(30px,5.5vw,58px); font-weight: 700;
-      text-transform: uppercase; letter-spacing: -.03em;
-      color: var(--text); margin-bottom: 32px; line-height: .98;
-    }
-    .image-grid-title span { color: var(--text-mid); font-weight: 500; }
-
-    .img-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: 8px;
-    }
-
-    /* Styling images layout — editorial asymmetric */
-    .img-a { grid-column: 1/8; grid-row: 1/3; aspect-ratio: 4/3; }
-    .img-b { grid-column: 8/13; grid-row: 1; aspect-ratio: 4/3; }
-    .img-c { grid-column: 8/13; grid-row: 2; aspect-ratio: 4/3; }
-    .img-d { grid-column: 1/5; grid-row: 3; aspect-ratio: 1; }
-    .img-e { grid-column: 5/9; grid-row: 3; aspect-ratio: 1; }
-    .img-f { grid-column: 9/13; grid-row: 3; aspect-ratio: 1; }
-
-    .img-cell {
-      overflow: hidden; border-radius: 2px; position: relative;
-      background: var(--card);
-    }
-    .img-cell img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .6s cubic-bezier(.4,0,.2,1);
-      display: block;
-    }
-    .img-cell:hover img { transform: scale(1.05); }
-    .img-cell-label {
-      position: absolute; bottom: 12px; left: 14px;
-      font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(240,246,248,.7);
-      background: rgba(11,14,19,.6); padding: 4px 8px; border-radius: 2px;
-    }
-
-    /* Placeholder for images not yet added */
-    .img-placeholder {
-      width:100%; height:100%; min-height:200px;
-      display:flex; align-items:center; justify-content:center;
-      background: var(--card); border: .5px dashed var(--border-light);
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-dim); text-align: center; padding: 16px;
-    }
-
     /* ─── CASE STUDIES FEATURED ─── */
     .cs-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
@@ -416,11 +365,6 @@
       .section-header { padding: 24px 20px 0; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card, .work-card.wc-wide { aspect-ratio: 4/3; grid-column: span 1; }
-      .image-grid-section { padding: 48px 20px; }
-      .img-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-      .img-a { grid-column:1/3; grid-row:1; }
-      .img-b { grid-column:1/3; grid-row:2; }
-      .img-c,.img-d,.img-e,.img-f { grid-column:span 1; grid-row:auto; }
       .about-left,.about-right { padding: 48px 20px; }
       .about-left { border-right:none; border-bottom:.5px solid var(--border); }
       footer { padding: 20px; }
@@ -434,7 +378,6 @@
   <button class="overlay-close" id="overlayClose">×</button>
   <ul class="overlay-nav">
     <li><a href="#work" onclick="closeMenu()">Work</a></li>
-    <li><a href="#styling" onclick="closeMenu()">Styling</a></li>
     <li><a href="case-studies/good-vibe.html">Good Vibe</a></li>
     <li><a href="case-studies/onpoint.html">OnPoint</a></li>
     <li><a href="case-studies/bridgeline.html">Bridgeline</a></li>
@@ -502,7 +445,7 @@
 <section id="work">
   <div class="section-header">
     <span class="section-label">Selected work</span>
-    <span class="section-label">08 projects</span>
+    <span class="section-label">07 projects</span>
   </div>
   <div class="work-grid">
 
@@ -534,7 +477,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#styling">
+    <a class="work-card" href="#work">
       <span class="work-card-num">03</span>
       <img src="images/nike-thumb.jpg" alt="Nike"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/nike-thumb.jpg&lt;/div&gt;'">
@@ -562,7 +505,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#styling">
+    <a class="work-card" href="#work">
       <span class="work-card-num">05</span>
       <img src="images/tyga-thumb.jpg" alt="Tyga"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/tyga-thumb.jpg&lt;/div&gt;'">
@@ -576,7 +519,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#styling">
+    <a class="work-card" href="#work">
       <span class="work-card-num">06</span>
       <img src="images/graphics-thumb.jpg" alt="Graphics"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/graphics-thumb.jpg&lt;/div&gt;'">
@@ -590,7 +533,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#styling">
+    <a class="work-card" href="#work">
       <span class="work-card-num">07</span>
       <img src="images/sorella-thumb.jpg" alt="Sorella"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/sorella-thumb.jpg&lt;/div&gt;'">
@@ -603,71 +546,6 @@
         <span class="work-card-arrow">→</span>
       </div>
     </a>
-
-    <a class="work-card" href="#styling">
-      <span class="work-card-num">08</span>
-      <img src="images/sustain-thumb.jpg" alt="Sustain-A-Ball"
-           onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/sustain-thumb.jpg&lt;/div&gt;'">
-      <div class="work-card-overlay"></div>
-      <div class="work-card-content">
-        <div>
-          <p class="work-card-title">Sustain-A-Ball</p>
-          <p class="work-card-type">Experience Design</p>
-        </div>
-        <span class="work-card-arrow">→</span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- STYLING + GRAPHICS IMAGE GRID -->
-<section class="image-grid-section" id="styling">
-  <h2 class="image-grid-title">
-    Product <span>Styling</span> + Graphics
-  </h2>
-
-  <div class="img-grid">
-
-    <!-- LARGE LEFT — Nike shoe close-up or beauty supply editorial -->
-    <div class="img-cell img-a">
-      <img src="images/styling-01.jpg" alt="Product styling"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-01.jpg<br>Nike / Jordan shoot</div>'">
-      <span class="img-cell-label">Nike · Still Life</span>
-    </div>
-
-    <!-- TOP RIGHT -->
-    <div class="img-cell img-b">
-      <img src="images/styling-02.jpg" alt="Styling"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-02.jpg<br>Editorial / campaign</div>'">
-      <span class="img-cell-label">Editorial</span>
-    </div>
-
-    <!-- BOTTOM RIGHT -->
-    <div class="img-cell img-c">
-      <img src="images/graphics-01.jpg" alt="Graphics"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/graphics-01.jpg<br>DUMB Magazine / LEGO</div>'">
-      <span class="img-cell-label">Graphics</span>
-    </div>
-
-    <!-- BOTTOM ROW 3-UP -->
-    <div class="img-cell img-d">
-      <img src="images/styling-03.jpg" alt="Styling"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/styling-03.jpg</div>'">
-      <span class="img-cell-label">Converse</span>
-    </div>
-
-    <div class="img-cell img-e">
-      <img src="images/sorella-01.jpg" alt="Sorella"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/sorella-01.jpg<br>Sorella Boutique</div>'">
-      <span class="img-cell-label">Sorella Boutique</span>
-    </div>
-
-    <div class="img-cell img-f">
-      <img src="images/tyga-01.jpg" alt="Tyga"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>Add image:<br>images/tyga-01.jpg<br>Tyga · Music Video</div>'">
-      <span class="img-cell-label">Tyga · Music Video</span>
-    </div>
 
   </div>
 </section>
