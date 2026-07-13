@@ -152,6 +152,22 @@ nav {
   color: var(--text-dim); margin-bottom: 16px;
 }
 
+/* IMAGE GALLERY */
+.cs-gallery {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  margin: 36px 0;
+}
+.cs-gallery.cs-gallery-single { grid-template-columns: 1fr; }
+.cs-gallery.cs-gallery-3 { grid-template-columns: repeat(3, 1fr); }
+@media(max-width:768px){ .cs-gallery, .cs-gallery.cs-gallery-3 { grid-template-columns: 1fr; } }
+
+.cs-figure { background: var(--card); border-radius: 2px; overflow: hidden; }
+.cs-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-figure-caption {
+  padding: 12px 4px 0; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 /* OUTCOME LIST */
 .outcomes { list-style: none; margin: 24px 0; display: flex; flex-direction: column; gap: 12px; }
 .outcome {
