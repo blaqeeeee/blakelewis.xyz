@@ -178,6 +178,10 @@ nav {
 
 .cs-figure { background: var(--card); border-radius: 2px; overflow: hidden; }
 .cs-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.cs-gallery-matched .cs-figure { height: 420px; }
+.cs-gallery-matched .cs-figure.cs-figure-contain img { object-fit: contain; padding: 20px; }
+@media(max-width:768px){ .cs-gallery-matched .cs-figure { height: 320px; } }
 .cs-figure-caption {
   padding: 12px 4px 0; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--text-dim);
