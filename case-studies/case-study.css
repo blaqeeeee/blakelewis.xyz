@@ -98,8 +98,16 @@ nav {
   color: var(--text-dim); margin-bottom: 24px;
 }
 
-.cs-logo {
-  height: 56px; width: auto; border-radius: 4px; margin-bottom: 24px; display: block;
+.cs-section-with-logo {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 48px;
+}
+.cs-section-main { flex: 1; min-width: 0; }
+.cs-logo-side {
+  width: 240px; flex-shrink: 0; height: auto; border-radius: 8px; margin-top: 8px;
+}
+@media(max-width:900px){
+  .cs-section-with-logo { flex-direction: column-reverse; gap: 24px; }
+  .cs-logo-side { width: 160px; }
 }
 
 .cs-h2 {
