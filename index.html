@@ -173,15 +173,15 @@
       overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
+      position: absolute; inset: 0; z-index: 0; display: flex;
     }
     .hero-bg img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(.92);
+      width: 50%; height: 100%; object-fit: cover;
+      filter: grayscale(35%) brightness(.5);
     }
     .hero-bg-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(11,14,19,.35) 0%, rgba(11,14,19,.15) 42%, rgba(11,14,19,.85) 100%);
+      background: linear-gradient(180deg, rgba(11,14,19,.4) 0%, rgba(11,14,19,.2) 42%, rgba(11,14,19,.9) 100%);
     }
 
     .hero-content {
@@ -193,25 +193,19 @@
 
     .hero-kicker {
       font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--text-mid); margin-bottom: 24px;
+      color: var(--text-mid); margin-bottom: 28px;
     }
 
     .hero-h1 {
       font-family: var(--font-display);
-      font-size: clamp(44px, 8.5vw, 108px);
-      font-weight: 700; line-height: .96;
+      font-size: clamp(48px, 10.5vw, 150px);
+      font-weight: 700; line-height: .92;
       letter-spacing: -.03em; text-transform: uppercase;
-      color: var(--text); max-width: 16ch;
-    }
-
-    .hero-h1 em {
-      font-family: 'Inter', sans-serif;
-      font-style: italic; font-weight: 300;
-      color: var(--text-mid);
+      color: var(--text);
     }
 
     .hero-sub {
-      margin-top: 24px;
+      margin-top: 28px;
       font-size: 12px; line-height: 2; letter-spacing: .08em;
       text-transform: uppercase; color: var(--text-mid); max-width: 480px;
     }
@@ -465,12 +459,13 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="images/art-01-hero-black.jpg" alt="" onerror="this.style.display='none'">
-    <div class="hero-bg-overlay"></div>
+    <img src="images/nike-thumb.jpg" alt="" onerror="this.style.display='none'">
+    <img src="images/sorella-02.jpg" alt="" onerror="this.style.display='none'">
   </div>
+  <div class="hero-bg-overlay"></div>
   <div class="hero-content">
     <p class="hero-kicker">Blake Lewis · Los Angeles, CA · 2026</p>
-    <h1 class="hero-h1">Styling. <em>Design</em> + Direction.</h1>
+    <h1 class="hero-h1">Styling.<br>Design.<br>Direction.</h1>
     <p class="hero-sub">
       Product Stylist · Interaction Designer · Art Director<br>
       Freelance Creative · SMC IxD Bachelor Student
