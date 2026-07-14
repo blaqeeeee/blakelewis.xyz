@@ -180,12 +180,12 @@ nav {
 .cs-carousel {
   display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
   margin: 36px 0; padding-bottom: 16px;
-  scrollbar-color: var(--accent) var(--card);
+  scrollbar-color: var(--text) var(--card);
   scrollbar-width: thin;
 }
 .cs-carousel::-webkit-scrollbar { height: 6px; }
 .cs-carousel::-webkit-scrollbar-track { background: var(--card); border-radius: 4px; }
-.cs-carousel::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+.cs-carousel::-webkit-scrollbar-thumb { background: var(--text); border-radius: 4px; }
 .cs-carousel-slide {
   flex: 0 0 260px; scroll-snap-align: start;
   border-radius: 2px; overflow: hidden; background: var(--card);
