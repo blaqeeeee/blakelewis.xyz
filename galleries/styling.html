@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styling — Blake Lewis</title>
+  <meta name="description" content="Nike, Jordan, Converse product styling — still life and e-commerce work by Blake Lewis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../index.html"><img class="logo-img" src="../images/BL-Logo.png" alt="Blake Lewis"></a>
+  <a class="nav-back" href="../index.html">← All work</a>
+</nav>
+
+<section class="gallery-hero">
+  <div class="gallery-hero-imgs">
+    <img src="../images/nike-thumb.jpg" alt="">
+    <img src="../images/styling-02.jpg" alt="">
+  </div>
+  <div class="gallery-hero-overlay"></div>
+  <div class="gallery-hero-content">
+    <p class="gallery-hero-label">Nike · Jordan · Converse</p>
+    <h1 class="gallery-hero-title">Styling</h1>
+    <p class="gallery-hero-sub">Product styling for still life and e-commerce — seasonal launches, campaign stills, and studio work across the Nike ecosystem.</p>
+  </div>
+</section>
+
+<div class="scatter-grid" id="scatterGrid"></div>
+
+<footer>
+  <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
+  <a class="nav-back" href="../index.html">← All work</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">×</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">←</button>
+  <div class="lightbox-stage">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <p class="lightbox-count" id="lightboxCount"></p>
+  </div>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
+</div>
+
+<script>
+  window.GALLERY_IMAGES = ['../images/nike-thumb.jpg','../images/styling-.png','../images/styling-01.png','../images/styling-15.png','../images/styling-16.png','../images/styling-17.png','../images/styling-20.png','../images/styling-21.png','../images/styling-23.png','../images/styling-24.png','../images/styling-25.png','../images/styling-27.png','../images/styling-28.png','../images/styling-33.png','../images/styling-35.png','../images/styling-37.png','../images/styling-39.png','../images/styling-40.png','../images/styling-41.png','../images/styling-02.jpg','../images/styling-06.jpeg','../images/styling-07.jpeg','../images/styling-08.jpeg','../images/styling-09.jpeg','../images/styling-14.jpeg','../images/styling-18.jpeg','../images/styling-19.jpeg','../images/styling-31.jpeg','../images/styling-32.jpeg','../images/styling-34.jpeg','../images/styling-36.jpeg','../images/styling-38.jpeg','../images/styling-42.jpeg','../images/styling-43.jpeg','../images/Styling-03.png','../images/Styling-04.png','../images/Styling-05.png','../images/Styling-07.jpg'];
+</script>
+<script src="gallery.js"></script>
+</body>
+</html>

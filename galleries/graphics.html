@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphics — Blake Lewis</title>
+  <meta name="description" content="Graphic design work by Blake Lewis — posters, covers, and campaign graphics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../index.html"><img class="logo-img" src="../images/BL-Logo.png" alt="Blake Lewis"></a>
+  <a class="nav-back" href="../index.html">← All work</a>
+</nav>
+
+<section class="gallery-hero">
+  <div class="gallery-hero-imgs">
+    <img src="../images/graphics-01.jpg" alt="">
+    <img src="../images/graphics-thumb.jpg" alt="">
+  </div>
+  <div class="gallery-hero-overlay"></div>
+  <div class="gallery-hero-content">
+    <p class="gallery-hero-label">Graphic Design</p>
+    <h1 class="gallery-hero-title">Graphics</h1>
+    <p class="gallery-hero-sub">Posters, magazine covers, and campaign graphics — typography-led design work.</p>
+  </div>
+</section>
+
+<div class="scatter-grid" id="scatterGrid"></div>
+
+<footer>
+  <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
+  <a class="nav-back" href="../index.html">← All work</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">×</button>
+  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">←</button>
+  <div class="lightbox-stage">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <p class="lightbox-count" id="lightboxCount"></p>
+  </div>
+  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
+</div>
+
+<script>
+  window.GALLERY_IMAGES = ['../images/graphics-thumb.jpg','../images/graphics-01.jpg','../images/graphics-03.jpg','../images/graphics-04.jpg','../images/graphics-05.jpg','../images/graphics-06.jpg','../images/graphics-07.jpg','../images/graphics-08.jpg','../images/graphics-11.jpg','../images/graphics-12.jpg','../images/graphics-13.jpg','../images/Graphics-02.jpg','../images/Graphics-1.jpeg'];
+</script>
+<script src="gallery.js"></script>
+</body>
+</html>

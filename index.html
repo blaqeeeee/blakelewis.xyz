@@ -535,7 +535,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#" onclick="openLightbox('nike'); return false;">
+    <a class="work-card" href="galleries/styling.html">
       <span class="work-card-num">03</span>
       <img src="images/nike-thumb.jpg" alt="Nike"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/nike-thumb.jpg&lt;/div&gt;'">
@@ -577,7 +577,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#" onclick="openLightbox('graphics'); return false;">
+    <a class="work-card" href="galleries/graphics.html">
       <span class="work-card-num">06</span>
       <img src="images/graphics-thumb.jpg" alt="Graphics"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/graphics-thumb.jpg&lt;/div&gt;'">
@@ -591,7 +591,7 @@
       </div>
     </a>
 
-    <a class="work-card" href="#" onclick="openLightbox('sorella'); return false;">
+    <a class="work-card" href="galleries/sorella.html">
       <span class="work-card-num">07</span>
       <img src="images/sorella-thumb.jpg" alt="Sorella"
            onerror="this.outerHTML='&lt;div class=&quot;img-placeholder-card&quot;&gt;Add image:&lt;br&gt;images/sorella-thumb.jpg&lt;/div&gt;'">
@@ -755,9 +755,6 @@
 
   // Lightbox galleries
   const galleries = {
-    nike: ['images/nike-thumb.jpg','images/styling-.png','images/styling-01.png','images/styling-15.png','images/styling-16.png','images/styling-17.png','images/styling-20.png','images/styling-21.png','images/styling-23.png','images/styling-24.png','images/styling-25.png','images/styling-27.png','images/styling-28.png','images/styling-33.png','images/styling-35.png','images/styling-37.png','images/styling-39.png','images/styling-40.png','images/styling-41.png','images/styling-02.jpg','images/styling-06.jpeg','images/styling-07.jpeg','images/styling-08.jpeg','images/styling-09.jpeg','images/styling-14.jpeg','images/styling-18.jpeg','images/styling-19.jpeg','images/styling-31.jpeg','images/styling-32.jpeg','images/styling-34.jpeg','images/styling-36.jpeg','images/styling-38.jpeg','images/styling-42.jpeg','images/styling-43.jpeg','images/Styling-03.png','images/Styling-04.png','images/Styling-05.png','images/Styling-07.jpg'],
-    graphics: ['images/graphics-thumb.jpg','images/graphics-01.jpg','images/graphics-03.jpg','images/graphics-04.jpg','images/graphics-05.jpg','images/graphics-06.jpg','images/graphics-07.jpg','images/graphics-08.jpg','images/graphics-11.jpg','images/graphics-12.jpg','images/graphics-13.jpg','images/Graphics-02.jpg','images/Graphics-1.jpeg'],
-    sorella: ['images/sorella-01.jpg','images/sorella-02.jpg','images/sorella-03.jpg','images/sorella-04.jpg','images/sorella-05.jpg','images/sorella-06.jpg','images/sorella-07.jpg','images/sorella-08.jpg','images/sorella-09.jpg','images/sorella-10.jpg'],
     tyga: [],
   };
 
@@ -815,6 +812,37 @@
     if (e.key === 'ArrowLeft') lightboxStep(-1);
     if (e.key === 'ArrowRight') lightboxStep(1);
   });
+
+  // Count-up animation for stat numbers
+  (function () {
+    function animateCount(el) {
+      const text = el.textContent.trim();
+      const match = text.match(/^(\d+)(.*)$/);
+      if (!match) return;
+      const target = parseInt(match[1], 10);
+      const suffix = match[2];
+      const duration = 1400;
+      const startTime = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+    const nums = document.querySelectorAll('.stat-num');
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    nums.forEach(el => statObserver.observe(el));
+  })();
 </script>
 </body>
 </html>
