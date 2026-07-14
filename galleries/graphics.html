@@ -9,6 +9,59 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="gallery.css">
+  <style>
+    .plain-hero {
+      position: relative; min-height: 46vh; display: flex;
+      background: radial-gradient(120% 140% at 50% 0%, var(--surface) 0%, var(--black) 70%);
+      border-bottom: .5px solid var(--border);
+    }
+    .magazine-badge {
+      position: absolute; bottom: 10px; left: 10px; z-index: 1;
+      font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text); background: rgba(11,14,19,.75); backdrop-filter: blur(4px);
+      padding: 6px 10px; border-radius: 3px; pointer-events: none;
+    }
+    .scatter-item { position: relative; }
+
+    /* MAGAZINE VIEWER */
+    .mag-viewer {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(11,14,19,.97); backdrop-filter: blur(8px);
+      opacity: 0; pointer-events: none; transition: opacity .3s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mag-viewer.open { opacity: 1; pointer-events: all; }
+    .mag-stage {
+      position: relative; max-width: 90vw; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mag-page { max-width: 90vw; max-height: 82vh; object-fit: contain; border-radius: 3px; display: block; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .mag-count {
+      position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim);
+    }
+    .mag-close {
+      position: absolute; top: 20px; right: 32px; z-index: 1;
+      font-size: 32px; line-height: 1; background: none; border: none;
+      color: var(--text-mid); cursor: pointer; transition: color .2s;
+    }
+    .mag-close:hover { color: var(--text); }
+    .mag-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 1;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--surface); border: none; color: var(--text);
+      font-size: 18px; cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .mag-arrow:hover { background: var(--card); transform: translateY(-50%) scale(1.08); }
+    .mag-prev { left: 24px; }
+    .mag-next { right: 24px; }
+    @media(max-width:700px){
+      .mag-arrow { width: 40px; height: 40px; font-size: 15px; }
+      .mag-prev { left: 10px; }
+      .mag-next { right: 10px; }
+      .mag-close { top: 14px; right: 16px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -17,12 +70,7 @@
   <a class="nav-back" href="../index.html">← All work</a>
 </nav>
 
-<section class="gallery-hero">
-  <div class="gallery-hero-imgs">
-    <img src="../images/graphics-01.jpg" alt="">
-    <img src="../images/graphics-thumb.jpg" alt="">
-  </div>
-  <div class="gallery-hero-overlay"></div>
+<section class="plain-hero">
   <div class="gallery-hero-content">
     <p class="gallery-hero-label">Graphic Design</p>
     <h1 class="gallery-hero-title">Graphics</h1>
@@ -30,7 +78,12 @@
   </div>
 </section>
 
-<div class="scatter-grid" id="scatterGrid"></div>
+<div class="scatter-grid" id="scatterGrid">
+  <div class="scatter-item" id="magazineTile">
+    <img src="../images/case-studies/dumb-magazine/page-01.jpg" alt="DUMB Magazine cover">
+    <span class="magazine-badge">Open magazine · 7 spreads</span>
+  </div>
+</div>
 
 <footer>
   <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
@@ -48,9 +101,72 @@
   <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
 </div>
 
+<!-- MAGAZINE VIEWER -->
+<div class="mag-viewer" id="magViewer">
+  <button class="mag-close" id="magClose" aria-label="Close magazine">×</button>
+  <button class="mag-arrow mag-prev" id="magPrev" aria-label="Previous page">←</button>
+  <div class="mag-stage">
+    <img class="mag-page" id="magPage" src="" alt="">
+    <p class="mag-count" id="magCount"></p>
+  </div>
+  <button class="mag-arrow mag-next" id="magNext" aria-label="Next page">→</button>
+</div>
+
 <script>
-  window.GALLERY_IMAGES = ['../images/graphics-thumb.jpg','../images/graphics-01.jpg','../images/graphics-03.jpg','../images/graphics-04.jpg','../images/graphics-05.jpg','../images/graphics-06.jpg','../images/graphics-07.jpg','../images/graphics-08.jpg','../images/graphics-11.jpg','../images/graphics-12.jpg','../images/graphics-13.jpg','../images/Graphics-02.jpg','../images/Graphics-1.jpeg','../images/graphics-15.jpg','../images/graphics-16.jpg','../images/graphics-17.jpg','../images/graphics-18.jpg','../images/graphics-19.jpg'];
+  window.GALLERY_IMAGES = ['../images/graphics-thumb.jpg','../images/graphics-01.jpg','../images/graphics-03.jpg','../images/graphics-04.jpg','../images/graphics-05.jpg','../images/graphics-06.jpg','../images/graphics-07.jpg','../images/graphics-08.jpg','../images/graphics-11.jpg','../images/graphics-12.jpg','../images/graphics-13.jpg','../images/Graphics-02.jpg','../images/Graphics-1.jpeg'];
 </script>
 <script src="gallery.js"></script>
+<script>
+  (function () {
+    const pages = [
+      '../images/case-studies/dumb-magazine/page-01.jpg',
+      '../images/case-studies/dumb-magazine/page-02.jpg',
+      '../images/case-studies/dumb-magazine/page-03.jpg',
+      '../images/case-studies/dumb-magazine/page-04.jpg',
+      '../images/case-studies/dumb-magazine/page-05.jpg',
+      '../images/case-studies/dumb-magazine/page-06.jpg',
+      '../images/case-studies/dumb-magazine/page-07.jpg'
+    ];
+    const viewer = document.getElementById('magViewer');
+    const magPage = document.getElementById('magPage');
+    const magCount = document.getElementById('magCount');
+    const magClose = document.getElementById('magClose');
+    const magPrev = document.getElementById('magPrev');
+    const magNext = document.getElementById('magNext');
+    const magazineTile = document.getElementById('magazineTile');
+    let index = 0;
+
+    function render() {
+      magPage.src = pages[index];
+      magCount.textContent = (index + 1) + ' / ' + pages.length;
+    }
+    function open() {
+      index = 0;
+      render();
+      viewer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      viewer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function step(dir) {
+      index = (index + dir + pages.length) % pages.length;
+      render();
+    }
+
+    magazineTile.addEventListener('click', open);
+    magClose.addEventListener('click', close);
+    magPrev.addEventListener('click', () => step(-1));
+    magNext.addEventListener('click', () => step(1));
+    viewer.addEventListener('click', e => { if (e.target === viewer) close(); });
+    document.addEventListener('keydown', e => {
+      if (!viewer.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  })();
+</script>
 </body>
 </html>
