@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tyga — Blake Lewis</title>
+  <meta name="description" content="Wardrobe styling for Tyga music videos by Blake Lewis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gallery.css">
+  <style>
+    .plain-hero {
+      position: relative; min-height: 46vh; display: flex;
+      background: radial-gradient(120% 140% at 50% 0%, var(--surface) 0%, var(--black) 70%);
+      border-bottom: .5px solid var(--border);
+    }
+    .video-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      padding: 56px 32px 80px; max-width: 1200px; margin: 0 auto;
+    }
+    .video-item { background: var(--card); border-radius: 4px; overflow: hidden; }
+    .video-frame { position: relative; width: 100%; aspect-ratio: 16/9; }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-caption { padding: 14px 16px 18px; }
+    .video-title { font-size: 13px; color: var(--text); letter-spacing: .02em; }
+    .video-meta {
+      margin-top: 4px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    @media(max-width: 800px) {
+      .video-grid { grid-template-columns: 1fr; padding: 40px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="../index.html"><img class="logo-img" src="../images/BL-Logo.png" alt="Blake Lewis"></a>
+  <a class="nav-back" href="../index.html">← All work</a>
+</nav>
+
+<section class="plain-hero">
+  <div class="gallery-hero-content">
+    <p class="gallery-hero-label">Wardrobe Styling</p>
+    <h1 class="gallery-hero-title">Tyga</h1>
+    <p class="gallery-hero-sub">Wardrobe styling for official Tyga music videos — sorted newest to oldest.</p>
+  </div>
+</section>
+
+<div class="video-grid">
+  <div class="video-item">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/fqQhbeJfzzw" title="Tyga - 40 Mill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-caption">
+      <p class="video-title">Tyga — "40 Mill"</p>
+      <p class="video-meta">2015</p>
+    </div>
+  </div>
+
+  <div class="video-item">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/TYSM8GAFR5I" title="Tyga - Ice Cream Man" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-caption">
+      <p class="video-title">Tyga — "Ice Cream Man"</p>
+      <p class="video-meta">2015</p>
+    </div>
+  </div>
+
+  <div class="video-item">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/zKCrSN9oXgQ" title="Chris Brown, Tyga - Ayo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-caption">
+      <p class="video-title">Chris Brown, Tyga — "Ayo"</p>
+      <p class="video-meta">2015</p>
+    </div>
+  </div>
+
+  <div class="video-item">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/XtK2RZq6urw" title="Tyga - Make It Work" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-caption">
+      <p class="video-title">Tyga — "Make It Work"</p>
+      <p class="video-meta">2014</p>
+    </div>
+  </div>
+
+  <div class="video-item">
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/b-J95fYuVz4" title="Tyga - Hookah ft. Young Thug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="video-caption">
+      <p class="video-title">Tyga ft. Young Thug — "Hookah"</p>
+      <p class="video-meta">2014</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
+  <a class="nav-back" href="../index.html">← All work</a>
+</footer>
+
+</body>
+</html>
