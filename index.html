@@ -55,6 +55,15 @@
     }
     .logo-img { height: 36px; width: auto; display: block; }
 
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .nav-status {
+      font-family: 'Space Mono','Space Grotesk',monospace;
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-status-dot { color: var(--text-dim); }
+
     .nav-center {
       position: absolute; left: 50%; transform: translateX(-50%);
       display: flex; align-items: center; gap: 10px;
@@ -409,31 +418,123 @@
     }
     .intro-accent { color: var(--text); font-weight: 700; }
 
-    /* ─── CTA ─── */
-    .cta-section {
-      border-top: .5px solid var(--border);
-      padding: 96px 32px; text-align: center;
-    }
-    .cta-label {
+    /* ─── FOOTER / CONTACT ─── */
+    .site-footer { border-top: .5px solid var(--border); }
+    .footer-eyebrow {
       font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--text-dim); margin-bottom: 20px;
+      font-family: 'Space Mono','Space Grotesk',monospace;
     }
-    .cta-h2 {
+    .footer-contact {
+      padding: 96px 32px 72px; text-align: center;
+    }
+    .footer-h2 {
       font-family: var(--font-display);
       font-size: clamp(32px, 6vw, 64px); font-weight: 700;
       text-transform: uppercase; letter-spacing: -.02em; color: var(--text);
-      line-height: 1.05; margin-bottom: 36px;
+      line-height: 1.05; margin-bottom: 28px;
     }
-    .cta-link {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text); text-decoration: none;
-      border-bottom: 1px solid var(--border-light); padding-bottom: 6px;
-      transition: border-color .2s, color .2s;
+    .footer-avail {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: .5px solid var(--border-light); border-radius: 999px;
+      padding: 8px 18px; margin-bottom: 56px;
     }
-    .cta-link:hover { color: var(--accent); border-color: var(--accent); }
-    .cta-arrow { color: var(--accent); transition: transform var(--t); }
-    .cta-link:hover .cta-arrow { transform: translateX(4px); }
+
+    .footer-links-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; background: var(--border);
+      border: .5px solid var(--border);
+      max-width: 1000px; margin: 0 auto 48px;
+    }
+    @media(max-width:768px){ .footer-links-grid{ grid-template-columns:1fr 1fr; } }
+    .footer-link-card {
+      background: var(--surface); padding: 28px 24px; text-align: left;
+      transition: background var(--t);
+    }
+    .footer-link-card:hover { background: var(--card); }
+    .footer-link-label {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 14px;
+    }
+    .footer-link-value {
+      font-size: 13px; color: var(--text); margin-bottom: 18px;
+      word-break: break-word;
+    }
+    .footer-link-action {
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-mid); text-decoration: none; transition: color .2s;
+    }
+    .footer-link-action:hover { color: var(--accent); }
+
+    .footer-cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    .btn-fill, .btn-outline {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+      text-decoration: none; font-weight: 600;
+      border-radius: 999px;
+    }
+    .btn-fill {
+      position: relative; overflow: hidden; isolation: isolate;
+      background: var(--accent); color: var(--black);
+      padding: 8px 28px 8px 8px;
+      transition: color .5s cubic-bezier(.165,.84,.44,1);
+    }
+    .btn-fill::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--text); border-radius: 999px;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .5s cubic-bezier(.165,.84,.44,1);
+      z-index: 0;
+    }
+    .btn-fill:hover::before { transform: scaleX(1); }
+    .btn-fill-icon {
+      position: relative; z-index: 1;
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: var(--black); color: var(--accent);
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+      transition: transform .5s cubic-bezier(.165,.84,.44,1);
+    }
+    .btn-fill:hover .btn-fill-icon { transform: rotate(45deg); }
+    .btn-fill-label { position: relative; z-index: 1; }
+
+    .btn-outline {
+      border: .5px solid var(--border-light); color: var(--text);
+      padding: 14px 28px;
+      transition: border-color .3s, color .3s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .footer-info {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; border-top: .5px solid var(--border);
+    }
+    @media(max-width:768px){ .footer-info{ grid-template-columns:1fr; } }
+    .footer-bio {
+      padding: 56px 32px; border-right: .5px solid var(--border);
+    }
+    @media(max-width:768px){ .footer-bio{ border-right:none; border-bottom:.5px solid var(--border); } }
+    .footer-bio-text { font-size: 14px; line-height: 1.8; color: var(--text-mid); max-width: 480px; }
+
+    .footer-skills { padding: 56px 32px; }
+    .skill-group { margin-bottom: 24px; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group-label {
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 12px;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .footer-bottom {
+      border-top: .5px solid var(--border);
+      padding: 20px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 10px; color: var(--text-dim); letter-spacing: .06em; }
+    .footer-location {
+      font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim);
+    }
 
     /* ─── ABOUT ─── */
     .about-section {
@@ -480,20 +581,10 @@
       color: var(--text-dim);
     }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: .5px solid var(--border);
-      padding: 24px 32px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 16px;
+
+    @media(max-width:900px){
+      .nav-status { display: none; }
     }
-    .footer-copy { font-size: 10px; color: var(--text-dim); letter-spacing: .06em; }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-dim); text-decoration: none; transition: color .2s;
-    }
-    .footer-links a:hover { color: var(--text); }
 
     /* ─── MOBILE ─── */
     @media(max-width:600px){
@@ -507,7 +598,10 @@
       .work-card, .work-card.wc-wide { aspect-ratio: 4/3; grid-column: span 1; }
       .about-left,.about-right { padding: 48px 20px; }
       .about-left { border-right:none; border-bottom:.5px solid var(--border); }
-      footer { padding: 20px; }
+      .footer-contact { padding: 56px 20px 48px; }
+      .footer-bio,.footer-skills { padding: 40px 20px; }
+      .footer-bottom { padding: 16px 20px; }
+      .footer-links-grid { max-width: none; }
     }
   </style>
 </head>
@@ -532,7 +626,10 @@
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
+  <div class="nav-left">
+    <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
+    <span class="nav-status">Los Angeles, CA <span class="nav-status-dot">·</span> <span id="localTime">--:--</span></span>
+  </div>
   <div class="nav-center">
     <div class="avail-dot"></div>
     <span class="avail-text">Available for freelance</span>
@@ -787,15 +884,88 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section reveal">
-  <p class="cta-label">Let's build something</p>
-  <h2 class="cta-h2">Have a project<br>in mind?</h2>
-  <a class="cta-link" href="mailto:hello@blakelewis.xyz">
-    <span>Start a conversation</span>
-    <span class="cta-arrow">→</span>
-  </a>
-</section>
+<!-- CONTACT / FOOTER -->
+<footer class="site-footer" id="contact">
+
+  <div class="footer-contact reveal">
+    <p class="footer-eyebrow">[ Contact ]</p>
+    <h2 class="footer-h2">Let's build something<br>that lasts.</h2>
+    <div class="footer-avail">
+      <div class="avail-dot"></div>
+      <span class="avail-text">Available for freelance</span>
+    </div>
+
+    <div class="footer-links-grid">
+      <div class="footer-link-card">
+        <p class="footer-link-label">Email</p>
+        <p class="footer-link-value">hello@blakelewis.xyz</p>
+        <a class="footer-link-action" href="mailto:hello@blakelewis.xyz">Write to me →</a>
+      </div>
+      <div class="footer-link-card">
+        <p class="footer-link-label">LinkedIn</p>
+        <p class="footer-link-value">/in/blakelewis</p>
+        <a class="footer-link-action" href="https://linkedin.com/in/blakelewis" target="_blank">Connect →</a>
+      </div>
+      <div class="footer-link-card">
+        <p class="footer-link-label">Instagram</p>
+        <p class="footer-link-value">@blaqeeeee</p>
+        <a class="footer-link-action" href="https://www.instagram.com/blaqeeeee/" target="_blank">Follow →</a>
+      </div>
+      <div class="footer-link-card">
+        <p class="footer-link-label">Resume</p>
+        <p class="footer-link-value">PDF · 1 page</p>
+        <a class="footer-link-action" href="Blake-Lewis-Resume.pdf" download>Download →</a>
+      </div>
+    </div>
+
+    <div class="footer-cta-buttons">
+      <a class="btn-fill" href="mailto:hello@blakelewis.xyz">
+        <span class="btn-fill-icon">→</span>
+        <span class="btn-fill-label">Start a conversation</span>
+      </a>
+      <a class="btn-outline" href="Blake-Lewis-Resume.pdf" download>
+        <span class="btn-fill-label">Download resume</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-info reveal">
+    <div class="footer-bio">
+      <p class="footer-eyebrow">[ About ]</p>
+      <p class="footer-bio-text">Multidisciplinary designer and product stylist based in Los Angeles, with 8+ years across brand storytelling, product styling, and visual merchandising. Currently styling for Nike's ecosystem while designing brand systems and digital experiences for real clients.</p>
+    </div>
+    <div class="footer-skills">
+      <p class="footer-eyebrow">[ Skills ]</p>
+      <div class="skill-group">
+        <p class="skill-group-label">Design</p>
+        <div class="skill-chips">
+          <span class="client-chip">Visual Design</span>
+          <span class="client-chip">Art Direction</span>
+          <span class="client-chip">Typography</span>
+          <span class="client-chip">Branding</span>
+          <span class="client-chip">Styling</span>
+          <span class="client-chip">Layout Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-label">Tools</p>
+        <div class="skill-chips">
+          <span class="client-chip">Photoshop</span>
+          <span class="client-chip">Illustrator</span>
+          <span class="client-chip">InDesign</span>
+          <span class="client-chip">Figma</span>
+          <span class="client-chip">Webflow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2020–2026 Blake Lewis · blakelewis.xyz</span>
+    <span class="footer-location">Los Angeles, CA</span>
+  </div>
+
+</footer>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -809,17 +979,24 @@
   <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
-  <div class="footer-links">
-    <a href="mailto:hello@blakelewis.xyz">Email</a>
-    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-    <a href="https://www.instagram.com/blaqeeeee/" target="_blank">Instagram</a>
-  </div>
-</footer>
-
 <script>
+  // Live local time — Los Angeles
+  (function () {
+    const el = document.getElementById('localTime');
+    if (!el) return;
+    function tick() {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles', hour: 'numeric', minute: '2-digit',
+        timeZoneName: 'shortOffset', hour12: true
+      }).formatToParts(new Date());
+      const get = type => (parts.find(p => p.type === type) || {}).value || '';
+      const offset = get('timeZoneName').replace('GMT', 'UTC');
+      el.textContent = get('hour') + ':' + get('minute') + ' ' + get('dayPeriod') + ' ' + offset;
+    }
+    tick();
+    setInterval(tick, 30000);
+  })();
+
   // Scroll nav border
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), {passive:true});
