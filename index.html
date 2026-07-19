@@ -109,6 +109,7 @@
     .nav-pill-cta { background: var(--accent); }
     .nav-pill-cta .nav-pill-label { color: var(--black); }
     .nav-pill-cta .nav-pill-icon { background: var(--black); color: var(--accent); }
+    .nav-pill-cta.is-copied .nav-pill-icon { transform: rotate(360deg); }
 
     /* ─── MENU OVERLAY ─── */
     .overlay {
@@ -131,11 +132,13 @@
     }
     .overlay-nav a:hover { color: var(--text); }
     .overlay-footer { margin-top: 40px; display: flex; gap: 28px; }
-    .overlay-footer a {
+    .overlay-footer a, .overlay-footer-copy {
       font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
       color: var(--text-dim); text-decoration: none; transition: color .2s;
+      background: none; border: none; padding: 0; font-family: inherit; cursor: pointer;
     }
-    .overlay-footer a:hover { color: var(--text); }
+    .overlay-footer a:hover, .overlay-footer-copy:hover { color: var(--text); }
+    .overlay-footer-copy.is-copied { color: var(--accent); }
 
     /* ─── LIGHTBOX ─── */
     .lightbox {
@@ -452,6 +455,11 @@
       transition: background var(--t);
     }
     .footer-link-card:hover { background: var(--card); }
+    .footer-link-card-btn {
+      display: block; width: 100%;
+      border: none; font: inherit; cursor: pointer;
+    }
+    .footer-link-card-btn.is-copied .footer-link-action { color: var(--accent); }
     .footer-link-label {
       font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
       color: var(--text-dim); margin-bottom: 14px;
@@ -471,8 +479,8 @@
     .btn-fill, .btn-outline {
       display: inline-flex; align-items: center; gap: 14px;
       font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-      text-decoration: none; font-weight: 600;
-      border-radius: 999px;
+      text-decoration: none; font-weight: 600; font-family: inherit;
+      border-radius: 999px; border: none; cursor: pointer;
     }
     .btn-fill {
       position: relative; overflow: hidden; isolation: isolate;
@@ -480,6 +488,7 @@
       padding: 8px 28px 8px 8px;
       transition: color .5s cubic-bezier(.165,.84,.44,1);
     }
+    .btn-fill.is-copied { color: var(--black); }
     .btn-fill::before {
       content: ''; position: absolute; inset: 0;
       background: var(--text); border-radius: 999px;
@@ -618,7 +627,7 @@
   </ul>
   <div class="overlay-footer">
     <a href="Blake-Lewis-Resume.pdf" download>Resume</a>
-    <a href="mailto:hello@blakelewis.xyz">Email</a>
+    <button type="button" class="overlay-footer-copy" onclick="copyEmail(this)" title="hello@blakelewis.xyz — click to copy"><span class="copy-label">Email</span></button>
     <a href="https://linkedin.com/in/blakelewis" target="_blank">LinkedIn</a>
     <a href="https://www.instagram.com/blaqeeeee/" target="_blank">Instagram</a>
   </div>
@@ -639,10 +648,10 @@
       <span class="nav-pill-label">Resume</span>
       <span class="nav-pill-icon">↓</span>
     </a>
-    <a class="nav-pill nav-pill-cta" href="mailto:hello@blakelewis.xyz">
-      <span class="nav-pill-label">Get In Touch</span>
+    <button type="button" class="nav-pill nav-pill-cta" onclick="copyEmail(this)" title="hello@blakelewis.xyz — click to copy">
+      <span class="nav-pill-label copy-label">Get In Touch</span>
       <span class="nav-pill-icon">→</span>
-    </a>
+    </button>
     <button class="nav-pill nav-pill-menu" id="burger" aria-expanded="false" aria-controls="overlay">
       <span class="nav-pill-label" id="menuLabel">Menu</span>
       <span class="nav-pill-icon">⋮</span>
@@ -896,11 +905,11 @@
     </div>
 
     <div class="footer-links-grid">
-      <div class="footer-link-card">
+      <button type="button" class="footer-link-card footer-link-card-btn" onclick="copyEmail(this)">
         <p class="footer-link-label">Email</p>
         <p class="footer-link-value">hello@blakelewis.xyz</p>
-        <a class="footer-link-action" href="mailto:hello@blakelewis.xyz">Write to me →</a>
-      </div>
+        <span class="footer-link-action copy-label">Copy email →</span>
+      </button>
       <div class="footer-link-card">
         <p class="footer-link-label">LinkedIn</p>
         <p class="footer-link-value">/in/blakelewis</p>
@@ -919,10 +928,10 @@
     </div>
 
     <div class="footer-cta-buttons">
-      <a class="btn-fill" href="mailto:hello@blakelewis.xyz">
+      <button type="button" class="btn-fill" onclick="copyEmail(this)" title="hello@blakelewis.xyz — click to copy">
         <span class="btn-fill-icon">→</span>
-        <span class="btn-fill-label">Start a conversation</span>
-      </a>
+        <span class="btn-fill-label copy-label">Start a conversation</span>
+      </button>
       <a class="btn-outline" href="Blake-Lewis-Resume.pdf" download>
         <span class="btn-fill-label">Download resume</span>
       </a>
@@ -980,6 +989,42 @@
 </div>
 
 <script>
+  // Copy email to clipboard instead of mailto (avoids OS mail-client handoff issues)
+  const EMAIL_ADDRESS = 'hello@blakelewis.xyz';
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function copyEmail(btn) {
+    const showCopied = () => {
+      const label = btn.querySelector('.copy-label');
+      if (!label) return;
+      if (!label.dataset.original) label.dataset.original = label.textContent;
+      label.textContent = 'Copied!';
+      btn.classList.add('is-copied');
+      clearTimeout(btn._copyTimeout);
+      btn._copyTimeout = setTimeout(() => {
+        label.textContent = label.dataset.original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(EMAIL_ADDRESS).then(showCopied, () => {
+        fallbackCopy(EMAIL_ADDRESS);
+        showCopied();
+      });
+    } else {
+      fallbackCopy(EMAIL_ADDRESS);
+      showCopied();
+    }
+  }
+
   // Live local time — Los Angeles
   (function () {
     const el = document.getElementById('localTime');
