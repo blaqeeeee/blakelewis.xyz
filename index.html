@@ -55,15 +55,6 @@
     }
     .logo-img { height: 36px; width: auto; display: block; }
 
-    .nav-left { display: flex; align-items: center; gap: 20px; }
-    .nav-status {
-      font-family: 'Space Mono','Space Grotesk',monospace;
-      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text-dim);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .nav-status-dot { color: var(--text-dim); }
-
     .nav-center {
       position: absolute; left: 50%; transform: translateX(-50%);
       display: flex; align-items: center; gap: 10px;
@@ -577,10 +568,6 @@
     }
 
 
-    @media(max-width:900px){
-      .nav-status { display: none; }
-    }
-
     /* ─── MOBILE ─── */
     @media(max-width:600px){
       nav { padding: 16px 20px; }
@@ -620,10 +607,7 @@
 
 <!-- NAV -->
 <nav id="mainNav">
-  <div class="nav-left">
-    <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
-    <span class="nav-status">Los Angeles, CA <span class="nav-status-dot">·</span> <span id="localTime">--:--</span></span>
-  </div>
+  <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
   <div class="nav-center">
     <div class="avail-dot"></div>
     <span class="avail-text">Available for freelance</span>
@@ -923,9 +907,9 @@
         <a class="footer-link-action" href="https://www.instagram.com/blaqeeeee/" target="_blank">Follow →</a>
       </div>
       <div class="footer-link-card">
-        <p class="footer-link-label">Resume</p>
-        <p class="footer-link-value">PDF · 1 page</p>
-        <a class="footer-link-action" href="Blake-Lewis-Resume.pdf" download>Download →</a>
+        <p class="footer-link-label">Location</p>
+        <p class="footer-link-value">Los Angeles, CA</p>
+        <span class="footer-link-action" id="footerLocalTime">--:-- --</span>
       </div>
     </div>
 
@@ -998,7 +982,7 @@
 
   // Live local time — Los Angeles
   (function () {
-    const el = document.getElementById('localTime');
+    const el = document.getElementById('footerLocalTime');
     if (!el) return;
     function tick() {
       const parts = new Intl.DateTimeFormat('en-US', {
