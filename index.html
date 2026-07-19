@@ -514,20 +514,6 @@
     }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    .footer-info {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; border-top: .5px solid var(--border);
-    }
-    @media(max-width:768px){ .footer-info{ grid-template-columns:1fr; } }
-    .footer-bio {
-      padding: 56px 32px; border-right: .5px solid var(--border);
-    }
-    @media(max-width:768px){ .footer-bio{ border-right:none; border-bottom:.5px solid var(--border); } }
-    .footer-bio-text { font-size: 14px; line-height: 1.8; color: var(--text-mid); max-width: 480px; }
-
-    .footer-skills { padding: 56px 32px; }
-    .skill-group { margin-bottom: 24px; }
-    .skill-group:last-child { margin-bottom: 0; }
     .skill-group-label {
       font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
       color: var(--text-dim); margin-bottom: 12px;
@@ -608,7 +594,6 @@
       .about-left,.about-right { padding: 48px 20px; }
       .about-left { border-right:none; border-bottom:.5px solid var(--border); }
       .footer-contact { padding: 56px 20px 48px; }
-      .footer-bio,.footer-skills { padding: 40px 20px; }
       .footer-bottom { padding: 16px 20px; }
       .footer-links-grid { max-width: none; }
     }
@@ -852,6 +837,7 @@
     <p class="about-tagline">
       "Product stylist and interaction designer. I make things look intentional — whether it's a sneaker on a white background or a UI flow that gets someone to click."
     </p>
+    <p class="skill-group-label" style="margin-top:32px;">Clients</p>
     <div class="client-list">
       <span class="client-chip">Nike</span>
       <span class="client-chip">Jordan</span>
@@ -864,12 +850,28 @@
       <span class="client-chip">Smashbox</span>
       <span class="client-chip">Bridgeline Development</span>
     </div>
+    <p class="skill-group-label" style="margin-top:28px;">Skills</p>
+    <div class="skill-chips">
+      <span class="client-chip">AI Tools</span>
+      <span class="client-chip">Visual Design</span>
+      <span class="client-chip">Art Direction</span>
+      <span class="client-chip">Typography</span>
+      <span class="client-chip">Branding</span>
+      <span class="client-chip">Styling</span>
+      <span class="client-chip">Layout Design</span>
+      <span class="client-chip">Photoshop</span>
+      <span class="client-chip">Illustrator</span>
+      <span class="client-chip">InDesign</span>
+      <span class="client-chip">Figma</span>
+      <span class="client-chip">Webflow</span>
+    </div>
   </div>
   <div class="about-right reveal">
     <p class="about-bio">
       I'm a multidisciplinary designer, stylist, and aspiring art director with over eight years of experience in the creative industry. Based in Los Angeles, I specialize in shaping brand identities, crafting memorable creative concepts, and producing work that leaves a lasting impression.<br><br>
       From still-life styling to global style guides and immersive brand experiences, I bridge aesthetics and functionality to create designs that resonate.<br><br>
       Currently in the Interaction Design program at Santa Monica College, building at the intersection of craft, visual communication, and digital experience. I bring the same eye for composition and hierarchy to interfaces that I bring to a product shoot.<br><br>
+      I also work fluently with AI tools across my process, from concept exploration to production — staying sharp with them isn't optional in this industry anymore, it's part of the craft.<br><br>
       My approach is rooted in clarity and creativity, with a focus on building authentic connections between brands and their audiences. If you're looking for someone to take your vision to the next level, let's make it happen.
     </p>
     <div class="about-stats">
@@ -935,37 +937,6 @@
       <a class="btn-outline" href="Blake-Lewis-Resume.pdf" download>
         <span class="btn-fill-label">Download resume</span>
       </a>
-    </div>
-  </div>
-
-  <div class="footer-info reveal">
-    <div class="footer-bio">
-      <p class="footer-eyebrow">[ About ]</p>
-      <p class="footer-bio-text">Multidisciplinary designer and product stylist based in Los Angeles, with 8+ years across brand storytelling, product styling, and visual merchandising. Currently styling for Nike's ecosystem while designing brand systems and digital experiences for real clients.</p>
-    </div>
-    <div class="footer-skills">
-      <p class="footer-eyebrow">[ Skills ]</p>
-      <div class="skill-group">
-        <p class="skill-group-label">Design</p>
-        <div class="skill-chips">
-          <span class="client-chip">Visual Design</span>
-          <span class="client-chip">Art Direction</span>
-          <span class="client-chip">Typography</span>
-          <span class="client-chip">Branding</span>
-          <span class="client-chip">Styling</span>
-          <span class="client-chip">Layout Design</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <p class="skill-group-label">Tools</p>
-        <div class="skill-chips">
-          <span class="client-chip">Photoshop</span>
-          <span class="client-chip">Illustrator</span>
-          <span class="client-chip">InDesign</span>
-          <span class="client-chip">Figma</span>
-          <span class="client-chip">Webflow</span>
-        </div>
-      </div>
     </div>
   </div>
 
