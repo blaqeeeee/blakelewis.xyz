@@ -249,6 +249,15 @@
       letter-spacing: -.02em; text-transform: uppercase;
       color: var(--text); max-width: 640px;
     }
+    .hero-h1-word {
+      display: block;
+      color: var(--text-dim);
+      transition: color .7s ease;
+    }
+    .hero-h1-word.is-active { color: var(--text); }
+    @media(prefers-reduced-motion: reduce) {
+      .hero-h1-word { color: var(--text); transition: none; }
+    }
 
     .hero-sub {
       font-size: 11px; line-height: 1.9; letter-spacing: .1em;
@@ -546,7 +555,11 @@
     </div>
   </div>
   <div class="hero-content" id="heroContent">
-    <h1 class="hero-h1">Styling. Design. Direction.</h1>
+    <h1 class="hero-h1" id="heroH1">
+      <span class="hero-h1-word is-active">Styling.</span>
+      <span class="hero-h1-word">Design.</span>
+      <span class="hero-h1-word">Direction.</span>
+    </h1>
     <p class="hero-sub">
       Product Stylist · Interaction Designer · Art Director<br>
       Freelance Creative · SMC IxD Bachelor Student
@@ -955,6 +968,20 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  })();
+
+  // Hero headline rotating emphasis
+  (function () {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+    const words = document.querySelectorAll('#heroH1 .hero-h1-word');
+    if (words.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      words[i].classList.remove('is-active');
+      i = (i + 1) % words.length;
+      words[i].classList.add('is-active');
+    }, 1800);
   })();
 
   // Hero pinned scroll-driven scale
