@@ -371,19 +371,29 @@
     /* ─── INTRO ─── */
     .intro-section {
       border-top: .5px solid var(--border);
-      padding: 64px 32px 72px;
-      max-width: 900px;
+      padding: 100px 32px 112px;
+      text-align: center;
     }
     .intro-eyebrow {
       font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--text-dim); margin-bottom: 20px;
+      color: var(--text-dim); margin-bottom: 28px;
     }
     .intro-lead {
       font-family: var(--font-display);
-      font-size: clamp(20px, 3.2vw, 32px); font-weight: 500;
-      line-height: 1.4; letter-spacing: -.01em; color: var(--text-mid);
+      font-size: clamp(22px, 3.6vw, 38px); font-weight: 500;
+      line-height: 1.5; letter-spacing: -.01em;
+      max-width: 940px; margin: 0 auto;
     }
-    .intro-accent { color: var(--text); font-weight: 700; }
+    .reveal-word {
+      color: var(--text-dim);
+      transition: color .4s ease;
+    }
+    .reveal-word.is-revealed { color: var(--text); }
+    .reveal-word.is-accent { font-weight: 700; }
+    .reveal-word.is-accent.is-revealed { color: var(--accent); }
+    @media(prefers-reduced-motion: reduce) {
+      .reveal-word { transition: none; }
+    }
 
     /* ─── FOOTER / CONTACT ─── */
     .site-footer { border-top: .5px solid var(--border); }
@@ -646,10 +656,41 @@
 </div>
 
 <!-- INTRO -->
-<section class="intro-section reveal">
+<section class="intro-section">
   <p class="intro-eyebrow">What I do</p>
-  <p class="intro-lead">
-    I've spent <span class="intro-accent">6+ years</span> styling product shoots for Nike's ecosystem, and the last <span class="intro-accent">4+ years</span> designing brand systems and digital experiences for real clients — one practice, two crafts, the same eye for composition.
+  <p class="intro-lead" id="introLead">
+    <span class="reveal-word">I've</span>
+    <span class="reveal-word">spent</span>
+    <span class="reveal-word is-accent">6+ years</span>
+    <span class="reveal-word">styling</span>
+    <span class="reveal-word">product</span>
+    <span class="reveal-word">shoots</span>
+    <span class="reveal-word">for</span>
+    <span class="reveal-word">Nike's</span>
+    <span class="reveal-word">ecosystem,</span>
+    <span class="reveal-word">and</span>
+    <span class="reveal-word">the</span>
+    <span class="reveal-word">last</span>
+    <span class="reveal-word is-accent">4+ years</span>
+    <span class="reveal-word">designing</span>
+    <span class="reveal-word">brand</span>
+    <span class="reveal-word">systems</span>
+    <span class="reveal-word">and</span>
+    <span class="reveal-word">digital</span>
+    <span class="reveal-word">experiences</span>
+    <span class="reveal-word">for</span>
+    <span class="reveal-word">real</span>
+    <span class="reveal-word">clients</span>
+    <span class="reveal-word">—</span>
+    <span class="reveal-word">one</span>
+    <span class="reveal-word">practice,</span>
+    <span class="reveal-word">two</span>
+    <span class="reveal-word">crafts,</span>
+    <span class="reveal-word">the</span>
+    <span class="reveal-word">same</span>
+    <span class="reveal-word">eye</span>
+    <span class="reveal-word">for</span>
+    <span class="reveal-word">composition.</span>
   </p>
 </section>
 
@@ -1091,6 +1132,39 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  })();
+
+  // Intro statement — words light up progressively as the section scrolls through view
+  (function () {
+    const section = document.querySelector('.intro-section');
+    const words = document.querySelectorAll('#introLead .reveal-word');
+    if (!section || !words.length) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      words.forEach(w => w.classList.add('is-revealed'));
+      return;
+    }
+
+    let ticking = false;
+    function update() {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const start = window.innerHeight * 0.9;
+      const end = window.innerHeight * 0.35;
+      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
+      const revealCount = Math.round(progress * words.length);
+      words.forEach((w, i) => w.classList.toggle('is-revealed', i < revealCount));
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   })();
 
   // Hero headline rotating emphasis
