@@ -41,12 +41,23 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">×</button>
-  <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">←</button>
-  <div class="lightbox-stage">
-    <img class="lightbox-img" id="lightboxImg" src="" alt="">
-    <p class="lightbox-count" id="lightboxCount"></p>
+  <div class="lightbox-nav">
+    <button class="lightbox-navlink" id="lightboxPrev">← Prev</button>
+    <button class="lightbox-navlink" id="lightboxNext">Next →</button>
   </div>
-  <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">→</button>
+  <div class="lightbox-filmstrip">
+    <button class="lightbox-peek lightbox-peek-prev" id="lightboxPeekPrev" aria-label="Previous image">
+      <img id="lightboxImgPrev" src="" alt="">
+    </button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    </div>
+    <button class="lightbox-peek lightbox-peek-next" id="lightboxPeekNext" aria-label="Next image">
+      <img id="lightboxImgNext" src="" alt="">
+    </button>
+  </div>
+  <div class="lightbox-pager" id="lightboxPager"></div>
+  <p class="lightbox-count" id="lightboxCount"></p>
 </div>
 
 <script>
