@@ -327,42 +327,43 @@
       filter: grayscale(15%) brightness(.82);
       transition: opacity .6s ease, transform .8s cubic-bezier(.4,0,.2,1), filter .5s;
     }
-    .work-card:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(1); }
+    .work-card:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(.8); }
     /* Image only reveals on hover for pointer devices that can actually hover;
        touch devices always show it since there's no hover state to reveal it. */
     @media (hover: hover) {
       .work-card img { opacity: 0; }
-      .work-card:hover img { opacity: 1; }
+      .work-card:hover img { opacity: .55; }
     }
 
     .work-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(11,14,19,0) 45%, rgba(11,14,19,.92) 100%);
+      background: radial-gradient(ellipse at center, rgba(11,14,19,.7) 0%, rgba(11,14,19,.3) 100%);
     }
     .work-card-num {
       position: absolute; top: 20px; left: 22px; z-index: 1;
       font-size: 10px; letter-spacing: .1em; color: rgba(240,246,248,.7);
     }
     .work-card-content {
-      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
-      padding: 20px 24px;
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+      position: absolute; inset: 0; z-index: 1;
+      padding: 24px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 10px;
     }
     .work-card-title {
       font-family: var(--font-display);
-      font-size: clamp(17px, 2vw, 25px); font-weight: 700;
+      font-size: clamp(22px, 2.8vw, 34px); font-weight: 700;
       text-transform: uppercase; letter-spacing: -.02em; color: var(--text);
       line-height: 1.1;
     }
     .work-card-type {
-      font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text-mid); margin-top: 6px;
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-mid);
     }
     .work-card-arrow {
-      font-size: 17px; color: var(--accent); flex-shrink: 0;
-      opacity: 0; transform: translateX(-8px); transition: all var(--t);
+      font-size: 17px; color: var(--accent);
+      opacity: 0; transform: translateY(4px); transition: all var(--t);
     }
-    .work-card:hover .work-card-arrow { opacity: 1; transform: translateX(0); }
+    .work-card:hover .work-card-arrow { opacity: 1; transform: translateY(0); }
 
     .img-placeholder-card {
       width: 100%; height: 100%;
@@ -712,7 +713,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Good Vibe Barbershop</p>
-          <p class="work-card-type">Experience Design · Fall 2025</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -726,7 +727,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">OnPoint Casino</p>
-          <p class="work-card-type">Experience Design · Fall 2025</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -740,7 +741,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Bridgeline Development</p>
-          <p class="work-card-type">Experience Design · Fall 2025</p>
+          <p class="work-card-type">Experience Design</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -1185,8 +1186,8 @@
     function update() {
       ticking = false;
       const rect = section.getBoundingClientRect();
-      const start = window.innerHeight * 0.9;
-      const end = window.innerHeight * 0.35;
+      const start = window.innerHeight * 1.0;
+      const end = window.innerHeight * -0.8;
       const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
       const revealCount = Math.round(progress * words.length);
       words.forEach((w, i) => w.classList.toggle('is-revealed', i < revealCount));
