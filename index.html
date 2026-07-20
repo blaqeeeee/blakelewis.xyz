@@ -708,7 +708,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Graphics</p>
-          <p class="work-card-type">Graphic Design · Ongoing</p>
+          <p class="work-card-type">Graphic Design</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -722,7 +722,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Nike / Jordan / Converse</p>
-          <p class="work-card-type">Still Life · E-Commerce · Ongoing</p>
+          <p class="work-card-type">Still Life · E-Commerce</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -749,7 +749,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Tyga</p>
-          <p class="work-card-type">Styling · Ongoing</p>
+          <p class="work-card-type">Styling</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -763,7 +763,7 @@
       <div class="work-card-content">
         <div>
           <p class="work-card-title">Sorella Boutique</p>
-          <p class="work-card-type">Fashion · Direction · Ongoing</p>
+          <p class="work-card-type">Fashion · Direction</p>
         </div>
         <span class="work-card-arrow">→</span>
       </div>
@@ -1110,8 +1110,8 @@
     function update() {
       ticking = false;
       const rect = section.getBoundingClientRect();
-      const start = window.innerHeight * 1.0;
-      const end = window.innerHeight * -0.8;
+      const start = window.innerHeight * 0.95;
+      const end = window.innerHeight * -0.1;
       const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
       const revealCount = Math.round(progress * words.length);
       words.forEach((w, i) => w.classList.toggle('is-revealed', i < revealCount));
