@@ -101,34 +101,6 @@
     /* Scramble-hover links use the character animation as their own tell instead of an underline */
     .nav-scramble::after { display: none; }
 
-    /* ─── MENU OVERLAY ─── */
-    .overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: var(--black);
-      opacity: 0; pointer-events: none;
-      transition: opacity .4s ease;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 64px 40px;
-    }
-    .overlay.open { opacity: 1; pointer-events: all; }
-    .overlay-nav { list-style: none; }
-    .overlay-nav li { border-bottom: 0.5px solid var(--border); }
-    .overlay-nav a {
-      display: block; font-family: var(--font-display);
-      font-size: clamp(40px,8vw,80px); font-weight: 700;
-      text-transform: uppercase; letter-spacing: -.03em;
-      color: var(--text-dim); text-decoration: none; padding: 14px 0;
-      transition: color .2s;
-    }
-    .overlay-nav a:hover { color: var(--text); }
-    .overlay-footer { margin-top: 40px; display: flex; gap: 28px; }
-    .overlay-footer a, .overlay-footer-copy {
-      font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-dim); text-decoration: none; transition: color .2s;
-      background: none; border: none; padding: 0; font-family: inherit; cursor: pointer;
-    }
-    .overlay-footer a:hover, .overlay-footer-copy:hover { color: var(--text); }
-    .overlay-footer-copy.is-copied { color: var(--accent); }
 
     /* ─── LIGHTBOX ─── */
     .lightbox {
@@ -576,22 +548,6 @@
 </head>
 <body>
 
-<!-- OVERLAY MENU -->
-<div class="overlay" id="overlay">
-  <ul class="overlay-nav">
-    <li><a href="#work" onclick="closeMenu()">Work</a></li>
-    <li><a href="case-studies/good-vibe.html">Good Vibe</a></li>
-    <li><a href="case-studies/onpoint.html">OnPoint</a></li>
-    <li><a href="case-studies/bridgeline.html">Bridgeline</a></li>
-    <li><a href="#about" onclick="closeMenu()">About</a></li>
-  </ul>
-  <div class="overlay-footer">
-    <button type="button" class="overlay-footer-copy" onclick="copyEmail(this)" title="hello@blakelewis.xyz — click to copy"><span class="copy-label">Email</span></button>
-    <a href="https://www.linkedin.com/in/blakeblewis" target="_blank">LinkedIn</a>
-    <a href="https://www.instagram.com/blaqeeeee/" target="_blank">Instagram</a>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav id="mainNav">
   <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
@@ -603,9 +559,6 @@
     <a class="nav-link nav-scramble" href="#work">Work</a>
     <a class="nav-link nav-scramble" href="#about">About</a>
     <a class="nav-link nav-scramble" href="#contact">Contact</a>
-    <button class="nav-link nav-scramble" id="burger" aria-expanded="false" aria-controls="overlay">
-      <span id="menuLabel">Menu</span>
-    </button>
   </div>
 </nav>
 
@@ -1030,37 +983,8 @@
         }, 35);
       });
     }
-    document.querySelectorAll('.nav-scramble').forEach(el => {
-      if (el.id === 'burger') return;
-      attachScramble(el);
-    });
-    const burgerEl = document.getElementById('burger');
-    const menuLabelEl = document.getElementById('menuLabel');
-    if (burgerEl && menuLabelEl) attachScramble(burgerEl, menuLabelEl);
+    document.querySelectorAll('.nav-scramble').forEach(el => attachScramble(el));
   })();
-
-  // Burger / overlay
-  const burger = document.getElementById('burger');
-  const overlay = document.getElementById('overlay');
-  const menuLabel = document.getElementById('menuLabel');
-
-  function openMenu() {
-    overlay.classList.add('open');
-    burger.setAttribute('aria-expanded', 'true');
-    menuLabel.textContent = 'Close';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    overlay.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    menuLabel.textContent = 'Menu';
-    document.body.style.overflow = '';
-  }
-  burger.addEventListener('click', () => {
-    overlay.classList.contains('open') ? closeMenu() : openMenu();
-  });
-  overlay.addEventListener('click', e => { if(e.target === overlay) closeMenu(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
 
   // Lightbox galleries
   const galleries = {
