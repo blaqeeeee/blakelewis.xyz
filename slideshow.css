@@ -34,28 +34,27 @@
 }
 
 .slideshow-filmstrip {
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center; gap: 24px;
 }
 .slideshow-peek {
-  flex: 0 0 16%;
+  flex: 0 0 14%;
   aspect-ratio: 4/3;
-  overflow: hidden; cursor: pointer;
+  overflow: hidden; cursor: pointer; border-radius: 4px;
   background: var(--card); border: none; padding: 0;
-  opacity: .32; transition: opacity .3s;
+  opacity: .4; transition: opacity .3s;
 }
-.slideshow-peek:hover { opacity: .65; }
+.slideshow-peek:hover { opacity: .75; }
 .slideshow-peek img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(45%); }
-.slideshow-peek-prev { border-right: .5px solid var(--border-light); }
-.slideshow-peek-next { border-left: .5px solid var(--border-light); }
 
 .slideshow-stage {
   position: relative; flex: 1 1 auto;
   max-width: 68vw; max-height: 68vh;
   aspect-ratio: 16/10;
-  background: var(--card);
+  background: transparent;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
+.slideshow-stage:has(.slideshow-video) { background: var(--card); }
 .slideshow-img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 .slideshow-video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 

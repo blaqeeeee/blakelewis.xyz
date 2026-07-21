@@ -185,6 +185,7 @@ nav {
 @media(max-width:768px){ .cs-gallery, .cs-gallery.cs-gallery-3 { grid-template-columns: 1fr; } }
 
 .cs-figure { background: var(--card); border-radius: 2px; overflow: hidden; }
+.cs-figure.cs-figure-nobg { background: transparent; }
 .cs-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .cs-gallery-matched .cs-figure { height: 420px; }
