@@ -10,7 +10,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="../slideshow.css">
   <style>
+    .magazine-open {
+      display: block; max-width: 1400px; margin: 40px auto 0; padding: 0 32px;
+    }
+    .magazine-open-tile {
+      position: relative; display: inline-block; cursor: pointer;
+      border-radius: 4px; overflow: hidden; background: var(--card);
+    }
+    .magazine-open-tile img { display: block; height: 240px; width: auto; }
     .plain-hero {
       position: relative; min-height: 46vh; display: flex;
       background: radial-gradient(120% 140% at 50% 0%, var(--surface) 0%, var(--black) 70%);
@@ -79,39 +88,36 @@
   </div>
 </section>
 
-<div class="scatter-grid" id="scatterGrid">
-  <div class="scatter-item" id="magazineTile">
+<div class="magazine-open">
+  <div class="magazine-open-tile" id="magazineTile">
     <img src="../images/case-studies/dumb-magazine/page-01.jpg" alt="DUMB Magazine cover">
     <span class="magazine-badge">Open magazine · 7 spreads</span>
   </div>
 </div>
 
+<section class="slideshow">
+  <div class="slideshow-nav">
+    <button class="slideshow-navlink" id="ssPrev">← Prev</button>
+    <p class="slideshow-title" id="ssTitle"></p>
+    <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+  </div>
+  <div class="slideshow-filmstrip">
+    <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
+      <img id="ssImgPrev" alt="">
+    </button>
+    <div class="slideshow-stage" id="ssStage"></div>
+    <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
+      <img id="ssImgNext" alt="">
+    </button>
+  </div>
+  <div class="slideshow-pager" id="ssPager"></div>
+  <p class="slideshow-count" id="ssCount"></p>
+</section>
+
 <footer>
   <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
   <a class="nav-back" href="../index.html">← All work</a>
 </footer>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">×</button>
-  <div class="lightbox-nav">
-    <button class="lightbox-navlink" id="lightboxPrev">← Prev</button>
-    <button class="lightbox-navlink" id="lightboxNext">Next →</button>
-  </div>
-  <div class="lightbox-filmstrip">
-    <button class="lightbox-peek lightbox-peek-prev" id="lightboxPeekPrev" aria-label="Previous image">
-      <img id="lightboxImgPrev" src="" alt="">
-    </button>
-    <div class="lightbox-stage">
-      <img class="lightbox-img" id="lightboxImg" src="" alt="">
-    </div>
-    <button class="lightbox-peek lightbox-peek-next" id="lightboxPeekNext" aria-label="Next image">
-      <img id="lightboxImgNext" src="" alt="">
-    </button>
-  </div>
-  <div class="lightbox-pager" id="lightboxPager"></div>
-  <p class="lightbox-count" id="lightboxCount"></p>
-</div>
 
 <!-- MAGAZINE VIEWER -->
 <div class="mag-viewer" id="magViewer">
@@ -125,9 +131,23 @@
 </div>
 
 <script>
-  window.GALLERY_IMAGES = ['../images/graphics-thumb.jpg','../images/graphics-01.jpg','../images/graphics-03.jpg','../images/graphics-04.jpg','../images/graphics-05.jpg','../images/graphics-06.jpg','../images/graphics-07.jpg','../images/graphics-08.jpg','../images/graphics-11.jpg','../images/graphics-12.jpg','../images/graphics-13.jpg','../images/Graphics-02.jpg','../images/Graphics-1.jpeg'];
+  window.SLIDES = [
+    { type: 'image', src: '../images/graphics-thumb.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-01.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-03.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-04.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-05.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-06.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-07.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-08.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-11.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-12.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/graphics-13.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/Graphics-02.jpg', title: 'Graphics' },
+    { type: 'image', src: '../images/Graphics-1.jpeg', title: 'Graphics' }
+  ];
 </script>
-<script src="gallery.js"></script>
+<script src="../slideshow.js"></script>
 <script>
   (function () {
     const pages = [

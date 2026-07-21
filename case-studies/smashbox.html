@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <link rel="stylesheet" href="case-study.css">
+  <link rel="stylesheet" href="../slideshow.css">
 </head>
 <body>
 
@@ -56,33 +57,24 @@
   <section class="cs-section">
     <p class="cs-section-label">02 — Product Styling</p>
     <h2 class="cs-h2">Halo Campaign<br>Product Photography</h2>
-    <div class="cs-gallery cs-gallery-3">
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-00.jpg" alt="Smashbox Halo concealer pens">
-      </figure>
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-01.jpg" alt="Smashbox Halo tubes styled on set">
-      </figure>
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-03.jpg" alt="Smashbox Halo foundation bottle">
-      </figure>
-    </div>
-    <div class="cs-gallery cs-gallery-3" style="margin-top:16px;">
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-04.jpg" alt="Smashbox Halo tubes close-up">
-      </figure>
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-05.jpg" alt="Smashbox lipsticks on red silk">
-      </figure>
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-07.jpg" alt="Smashbox lip liners on red concrete">
-      </figure>
-    </div>
-    <div class="cs-gallery cs-gallery-single" style="margin-top:16px;">
-      <figure class="cs-figure">
-        <img src="../images/smash-box-styling-09.jpg" alt="Smashbox lip gloss and lipstick on red">
-      </figure>
-    </div>
+    <section class="slideshow" style="padding-left:0; padding-right:0;">
+      <div class="slideshow-nav">
+        <button class="slideshow-navlink" id="ssPrev">← Prev</button>
+        <p class="slideshow-title" id="ssTitle"></p>
+        <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+      </div>
+      <div class="slideshow-filmstrip">
+        <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
+          <img id="ssImgPrev" alt="">
+        </button>
+        <div class="slideshow-stage" id="ssStage"></div>
+        <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
+          <img id="ssImgNext" alt="">
+        </button>
+      </div>
+      <div class="slideshow-pager" id="ssPager"></div>
+      <p class="slideshow-count" id="ssCount"></p>
+    </section>
   </section>
 
 </div>
@@ -100,6 +92,18 @@
   <a class="nav-back" href="../index.html">← All work</a>
 </div>
 
+<script>
+  window.SLIDES = [
+    { type: 'image', src: '../images/smash-box-styling-00.jpg', title: 'Smashbox Halo concealer pens' },
+    { type: 'image', src: '../images/smash-box-styling-01.jpg', title: 'Smashbox Halo tubes styled on set' },
+    { type: 'image', src: '../images/smash-box-styling-03.jpg', title: 'Smashbox Halo foundation bottle' },
+    { type: 'image', src: '../images/smash-box-styling-04.jpg', title: 'Smashbox Halo tubes close-up' },
+    { type: 'image', src: '../images/smash-box-styling-05.jpg', title: 'Smashbox lipsticks on red silk' },
+    { type: 'image', src: '../images/smash-box-styling-07.jpg', title: 'Smashbox lip liners on red concrete' },
+    { type: 'image', src: '../images/smash-box-styling-09.jpg', title: 'Smashbox lip gloss and lipstick on red' }
+  ];
+</script>
+<script src="../slideshow.js"></script>
 <script src="case-study.js"></script>
 </body>
 </html>

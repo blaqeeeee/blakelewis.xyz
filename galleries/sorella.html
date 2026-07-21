@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="../slideshow.css">
   <style>
     .plain-hero {
       position: relative; min-height: 46vh; display: flex;
@@ -33,38 +34,45 @@
   </div>
 </section>
 
-<div class="scatter-grid" id="scatterGrid"></div>
+<section class="slideshow">
+  <div class="slideshow-nav">
+    <button class="slideshow-navlink" id="ssPrev">← Prev</button>
+    <p class="slideshow-title" id="ssTitle"></p>
+    <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+  </div>
+  <div class="slideshow-filmstrip">
+    <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
+      <img id="ssImgPrev" alt="">
+    </button>
+    <div class="slideshow-stage" id="ssStage"></div>
+    <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
+      <img id="ssImgNext" alt="">
+    </button>
+  </div>
+  <div class="slideshow-pager" id="ssPager"></div>
+  <p class="slideshow-count" id="ssCount"></p>
+</section>
 
 <footer>
   <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
   <a class="nav-back" href="../index.html">← All work</a>
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close gallery">×</button>
-  <div class="lightbox-nav">
-    <button class="lightbox-navlink" id="lightboxPrev">← Prev</button>
-    <button class="lightbox-navlink" id="lightboxNext">Next →</button>
-  </div>
-  <div class="lightbox-filmstrip">
-    <button class="lightbox-peek lightbox-peek-prev" id="lightboxPeekPrev" aria-label="Previous image">
-      <img id="lightboxImgPrev" src="" alt="">
-    </button>
-    <div class="lightbox-stage">
-      <img class="lightbox-img" id="lightboxImg" src="" alt="">
-    </div>
-    <button class="lightbox-peek lightbox-peek-next" id="lightboxPeekNext" aria-label="Next image">
-      <img id="lightboxImgNext" src="" alt="">
-    </button>
-  </div>
-  <div class="lightbox-pager" id="lightboxPager"></div>
-  <p class="lightbox-count" id="lightboxCount"></p>
-</div>
-
 <script>
-  window.GALLERY_IMAGES = ['../images/sorella-01.jpg','../images/sorella-02.jpg','../images/sorella-03.jpg','../images/sorella-04.jpg','../images/sorella-05.jpg','../images/sorella-06.jpg','../images/sorella-07.jpg','../images/sorella-08.jpg','../images/sorella-09.jpg','../images/sorella-10.jpg','../images/sorella-11.jpg','../images/sorella-12.jpg'];
+  window.SLIDES = [
+    { type: 'image', src: '../images/sorella-001.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-002.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-02.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-03.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-04.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-05.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-06.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-08.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-10.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-11.jpg', title: 'Sorella Boutique' },
+    { type: 'image', src: '../images/sorella-12.jpg', title: 'Sorella Boutique' }
+  ];
 </script>
-<script src="gallery.js"></script>
+<script src="../slideshow.js"></script>
 </body>
 </html>

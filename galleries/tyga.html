@@ -10,28 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,800;0,900;1,300&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../images/favicon.png">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="../slideshow.css">
   <style>
     .plain-hero {
       position: relative; min-height: 46vh; display: flex;
       background: radial-gradient(120% 140% at 50% 0%, var(--surface) 0%, var(--black) 70%);
       border-bottom: .5px solid var(--border);
     }
-    .video-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      padding: 56px 32px 80px; max-width: 1200px; margin: 0 auto;
-    }
-    .video-item { background: var(--card); border-radius: 4px; overflow: hidden; }
-    .video-frame { position: relative; width: 100%; aspect-ratio: 16/9; }
-    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .video-caption { padding: 14px 16px 18px; }
-    .video-title { font-size: 13px; color: var(--text); letter-spacing: .02em; }
-    .video-meta {
-      margin-top: 4px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text-dim);
-    }
-    @media(max-width: 800px) {
-      .video-grid { grid-template-columns: 1fr; padding: 40px 20px 60px; }
-    }
+    .slideshow-stage { aspect-ratio: 16/9; }
   </style>
 </head>
 <body>
@@ -49,72 +35,70 @@
   </div>
 </section>
 
-<div class="video-grid">
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/pfP8GIGr_20" title="Tyga - Dope'd Up" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Tyga — "Dope'd Up"</p>
-      <p class="video-meta">2015</p>
-    </div>
+<section class="slideshow">
+  <div class="slideshow-nav">
+    <button class="slideshow-navlink" id="ssPrev">← Prev</button>
+    <p class="slideshow-title" id="ssTitle"></p>
+    <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
   </div>
-
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/fqQhbeJfzzw" title="Tyga - 40 Mill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Tyga — "40 Mill"</p>
-      <p class="video-meta">2015</p>
-    </div>
+  <div class="slideshow-filmstrip">
+    <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
+      <img id="ssImgPrev" alt="">
+    </button>
+    <div class="slideshow-stage" id="ssStage"></div>
+    <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
+      <img id="ssImgNext" alt="">
+    </button>
   </div>
-
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/TYSM8GAFR5I" title="Tyga - Ice Cream Man" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Tyga — "Ice Cream Man"</p>
-      <p class="video-meta">2015</p>
-    </div>
-  </div>
-
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/zKCrSN9oXgQ" title="Chris Brown, Tyga - Ayo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Chris Brown, Tyga — "Ayo"</p>
-      <p class="video-meta">2015</p>
-    </div>
-  </div>
-
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/XtK2RZq6urw" title="Tyga - Make It Work" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Tyga — "Make It Work"</p>
-      <p class="video-meta">2014</p>
-    </div>
-  </div>
-
-  <div class="video-item">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/b-J95fYuVz4" title="Tyga - Hookah ft. Young Thug" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <div class="video-caption">
-      <p class="video-title">Tyga ft. Young Thug — "Hookah"</p>
-      <p class="video-meta">2014</p>
-    </div>
-  </div>
-</div>
+  <div class="slideshow-pager" id="ssPager"></div>
+  <p class="slideshow-count" id="ssCount"></p>
+</section>
 
 <footer>
   <span class="footer-copy">© 2020–2025 Blake Lewis · blakelewis.xyz</span>
   <a class="nav-back" href="../index.html">← All work</a>
 </footer>
 
+<script>
+  window.SLIDES = [
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/pfP8GIGr_20',
+      thumb: 'https://i.ytimg.com/vi/pfP8GIGr_20/maxresdefault.jpg',
+      title: 'Tyga — "Dope\'d Up" (2015)'
+    },
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/fqQhbeJfzzw',
+      thumb: 'https://i.ytimg.com/vi/fqQhbeJfzzw/maxresdefault.jpg',
+      title: 'Tyga — "40 Mill" (2015)'
+    },
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/TYSM8GAFR5I',
+      thumb: 'https://i.ytimg.com/vi/TYSM8GAFR5I/maxresdefault.jpg',
+      title: 'Tyga — "Ice Cream Man" (2015)'
+    },
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/zKCrSN9oXgQ',
+      thumb: 'https://i.ytimg.com/vi/zKCrSN9oXgQ/maxresdefault.jpg',
+      title: 'Chris Brown, Tyga — "Ayo" (2015)'
+    },
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/XtK2RZq6urw',
+      thumb: 'https://i.ytimg.com/vi/XtK2RZq6urw/maxresdefault.jpg',
+      title: 'Tyga — "Make It Work" (2014)'
+    },
+    {
+      type: 'video',
+      embed: 'https://www.youtube.com/embed/b-J95fYuVz4',
+      thumb: 'https://i.ytimg.com/vi/b-J95fYuVz4/maxresdefault.jpg',
+      title: 'Tyga ft. Young Thug — "Hookah" (2014)'
+    }
+  ];
+</script>
+<script src="../slideshow.js"></script>
 </body>
 </html>
