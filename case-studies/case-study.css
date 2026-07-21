@@ -188,6 +188,9 @@ nav {
 .cs-figure.cs-figure-nobg { background: transparent; }
 .cs-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+.cs-gallery.cs-gallery-natural { align-items: center; }
+.cs-gallery-natural .cs-figure img { height: auto; object-fit: contain; }
+
 .cs-gallery-matched .cs-figure { height: 420px; }
 .cs-gallery-matched .cs-figure.cs-figure-contain img { object-fit: contain; padding: 20px; }
 .cs-gallery-top .cs-figure img { object-position: top; }
