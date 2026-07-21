@@ -57,23 +57,23 @@
   <section class="cs-section">
     <p class="cs-section-label">02 — Product Styling</p>
     <h2 class="cs-h2">Halo Campaign<br>Product Photography</h2>
-    <section class="slideshow" style="padding-left:0; padding-right:0;">
+    <section class="slideshow" data-slideshow="smashbox" style="padding-left:0; padding-right:0;">
       <div class="slideshow-nav">
-        <button class="slideshow-navlink" id="ssPrev">← Prev</button>
-        <p class="slideshow-title" id="ssTitle"></p>
-        <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+        <button class="slideshow-navlink">← Prev</button>
+        <p class="slideshow-title"></p>
+        <button class="slideshow-navlink slideshow-next">Next →</button>
       </div>
       <div class="slideshow-filmstrip">
-        <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
-          <img id="ssImgPrev" alt="">
+        <button class="slideshow-peek slideshow-peek-prev" aria-label="Previous">
+          <img alt="">
         </button>
-        <div class="slideshow-stage" id="ssStage"></div>
-        <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
-          <img id="ssImgNext" alt="">
+        <div class="slideshow-stage"></div>
+        <button class="slideshow-peek slideshow-peek-next" aria-label="Next">
+          <img alt="">
         </button>
       </div>
-      <div class="slideshow-pager" id="ssPager"></div>
-      <p class="slideshow-count" id="ssCount"></p>
+      <div class="slideshow-pager"></div>
+      <p class="slideshow-count"></p>
     </section>
   </section>
 
@@ -93,15 +93,17 @@
 </div>
 
 <script>
-  window.SLIDES = [
-    { type: 'image', src: '../images/smash-box-styling-00.jpg', title: 'Smashbox Halo concealer pens' },
-    { type: 'image', src: '../images/smash-box-styling-01.jpg', title: 'Smashbox Halo tubes styled on set' },
-    { type: 'image', src: '../images/smash-box-styling-03.jpg', title: 'Smashbox Halo foundation bottle' },
-    { type: 'image', src: '../images/smash-box-styling-04.jpg', title: 'Smashbox Halo tubes close-up' },
-    { type: 'image', src: '../images/smash-box-styling-05.jpg', title: 'Smashbox lipsticks on red silk' },
-    { type: 'image', src: '../images/smash-box-styling-07.jpg', title: 'Smashbox lip liners on red concrete' },
-    { type: 'image', src: '../images/smash-box-styling-09.jpg', title: 'Smashbox lip gloss and lipstick on red' }
-  ];
+  window.SLIDESHOWS = {
+    smashbox: [
+      { type: 'image', src: '../images/smash-box-styling-00.jpg', title: 'Smashbox Halo concealer pens' },
+      { type: 'image', src: '../images/smash-box-styling-01.jpg', title: 'Smashbox Halo tubes styled on set' },
+      { type: 'image', src: '../images/smash-box-styling-03.jpg', title: 'Smashbox Halo foundation bottle' },
+      { type: 'image', src: '../images/smash-box-styling-04.jpg', title: 'Smashbox Halo tubes close-up' },
+      { type: 'image', src: '../images/smash-box-styling-05.jpg', title: 'Smashbox lipsticks on red silk' },
+      { type: 'image', src: '../images/smash-box-styling-07.jpg', title: 'Smashbox lip liners on red concrete' },
+      { type: 'image', src: '../images/smash-box-styling-09.jpg', title: 'Smashbox lip gloss and lipstick on red' }
+    ]
+  };
 </script>
 <script src="../slideshow.js"></script>
 <script src="case-study.js"></script>

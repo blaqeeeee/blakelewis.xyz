@@ -34,23 +34,23 @@
   </div>
 </section>
 
-<section class="slideshow">
+<section class="slideshow" data-slideshow="sorella">
   <div class="slideshow-nav">
-    <button class="slideshow-navlink" id="ssPrev">← Prev</button>
-    <p class="slideshow-title" id="ssTitle"></p>
-    <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+    <button class="slideshow-navlink">← Prev</button>
+    <p class="slideshow-title"></p>
+    <button class="slideshow-navlink slideshow-next">Next →</button>
   </div>
   <div class="slideshow-filmstrip">
-    <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
-      <img id="ssImgPrev" alt="">
+    <button class="slideshow-peek slideshow-peek-prev" aria-label="Previous">
+      <img alt="">
     </button>
-    <div class="slideshow-stage" id="ssStage"></div>
-    <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
-      <img id="ssImgNext" alt="">
+    <div class="slideshow-stage"></div>
+    <button class="slideshow-peek slideshow-peek-next" aria-label="Next">
+      <img alt="">
     </button>
   </div>
-  <div class="slideshow-pager" id="ssPager"></div>
-  <p class="slideshow-count" id="ssCount"></p>
+  <div class="slideshow-pager"></div>
+  <p class="slideshow-count"></p>
 </section>
 
 <footer>
@@ -59,19 +59,21 @@
 </footer>
 
 <script>
-  window.SLIDES = [
-    { type: 'image', src: '../images/sorella-001.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-002.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-02.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-03.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-04.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-05.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-06.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-08.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-10.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-11.jpg', title: 'Sorella Boutique' },
-    { type: 'image', src: '../images/sorella-12.jpg', title: 'Sorella Boutique' }
-  ];
+  window.SLIDESHOWS = {
+    sorella: [
+      { type: 'image', src: '../images/sorella-001.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-002.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-02.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-03.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-04.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-05.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-06.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-08.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-10.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-11.jpg', title: 'Sorella Boutique' },
+      { type: 'image', src: '../images/sorella-12.jpg', title: 'Sorella Boutique' }
+    ]
+  };
 </script>
 <script src="../slideshow.js"></script>
 </body>

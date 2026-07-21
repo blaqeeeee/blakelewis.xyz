@@ -35,23 +35,23 @@
   </div>
 </section>
 
-<section class="slideshow">
+<section class="slideshow" data-slideshow="tyga">
   <div class="slideshow-nav">
-    <button class="slideshow-navlink" id="ssPrev">← Prev</button>
-    <p class="slideshow-title" id="ssTitle"></p>
-    <button class="slideshow-navlink slideshow-next" id="ssNext">Next →</button>
+    <button class="slideshow-navlink">← Prev</button>
+    <p class="slideshow-title"></p>
+    <button class="slideshow-navlink slideshow-next">Next →</button>
   </div>
   <div class="slideshow-filmstrip">
-    <button class="slideshow-peek slideshow-peek-prev" id="ssPeekPrev" aria-label="Previous">
-      <img id="ssImgPrev" alt="">
+    <button class="slideshow-peek slideshow-peek-prev" aria-label="Previous">
+      <img alt="">
     </button>
-    <div class="slideshow-stage" id="ssStage"></div>
-    <button class="slideshow-peek slideshow-peek-next" id="ssPeekNext" aria-label="Next">
-      <img id="ssImgNext" alt="">
+    <div class="slideshow-stage"></div>
+    <button class="slideshow-peek slideshow-peek-next" aria-label="Next">
+      <img alt="">
     </button>
   </div>
-  <div class="slideshow-pager" id="ssPager"></div>
-  <p class="slideshow-count" id="ssCount"></p>
+  <div class="slideshow-pager"></div>
+  <p class="slideshow-count"></p>
 </section>
 
 <footer>
@@ -60,7 +60,7 @@
 </footer>
 
 <script>
-  window.SLIDES = [
+  window.SLIDESHOWS = { tyga: [
     {
       type: 'video',
       embed: 'https://www.youtube.com/embed/pfP8GIGr_20',
@@ -97,7 +97,7 @@
       thumb: 'https://i.ytimg.com/vi/b-J95fYuVz4/maxresdefault.jpg',
       title: 'Tyga ft. Young Thug — "Hookah" (2014)'
     }
-  ];
+  ] };
 </script>
 <script src="../slideshow.js"></script>
 </body>
