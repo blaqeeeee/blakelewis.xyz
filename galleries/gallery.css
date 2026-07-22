@@ -72,6 +72,12 @@ nav {
   color: var(--text-mid); max-width: 480px; margin-left: auto; margin-right: auto;
 }
 
+.plain-hero {
+  position: relative; min-height: 46vh; display: flex;
+  background: radial-gradient(120% 140% at 50% 0%, var(--surface) 0%, var(--black) 70%);
+  border-bottom: .5px solid var(--border);
+}
+
 @media(max-width: 700px){
   nav { padding: 16px 20px; }
   .gallery-hero-content { padding: 110px 20px 40px; }
