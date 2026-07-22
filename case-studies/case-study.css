@@ -57,13 +57,12 @@ nav {
   color: var(--text-dim); margin-bottom: 20px;
   display: flex; align-items: center; gap: 14px;
 }
-.cs-eyebrow-dot { color: var(--accent); font-size: 8px; }
+.cs-eyebrow-star { color: var(--accent); font-size: 9px; }
 
 .cs-tag {
   font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--text-dim); display: flex; align-items: center; gap: 5px;
+  color: var(--text-dim);
 }
-.cs-tag::before { content: '✦'; font-size: 7px; color: var(--accent); }
 
 .cs-h1 {
   font-family: var(--font-display);
