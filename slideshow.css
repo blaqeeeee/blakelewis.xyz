@@ -9,7 +9,8 @@
 .slideshow.slideshow-stacked { padding-top: 0; }
 
 .slideshow-section-label {
-  max-width: 1400px; margin: 64px auto 0; padding: 0 32px;
+  max-width: 1400px; margin: 64px auto 0; padding: 40px 32px 0;
+  border-top: .5px solid var(--border);
   font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
   color: var(--text-dim);
 }
