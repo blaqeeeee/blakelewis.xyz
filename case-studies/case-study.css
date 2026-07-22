@@ -222,6 +222,19 @@ nav {
 }
 .cs-carousel-slide img { width: 100%; display: block; }
 
+/* SCROLL FRAME (tall full-page screenshots) */
+.cs-scroll-frame {
+  height: 640px; overflow-y: auto; overflow-x: hidden;
+  border-radius: 2px; background: var(--card);
+  scrollbar-color: var(--text) var(--card);
+  scrollbar-width: thin;
+}
+.cs-scroll-frame::-webkit-scrollbar { width: 6px; }
+.cs-scroll-frame::-webkit-scrollbar-track { background: var(--card); border-radius: 4px; }
+.cs-scroll-frame::-webkit-scrollbar-thumb { background: var(--text); border-radius: 4px; }
+.cs-scroll-frame img { width: 100%; display: block; }
+@media(max-width:768px){ .cs-scroll-frame { height: 480px; } }
+
 /* OUTCOME LIST */
 .outcomes { list-style: none; margin: 24px 0; display: flex; flex-direction: column; gap: 12px; }
 .outcome {
