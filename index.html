@@ -233,6 +233,8 @@
       font-size: 11px; line-height: 1.9; letter-spacing: .1em;
       text-transform: uppercase; color: var(--text-mid); max-width: 480px;
     }
+    .hero-sub-line { display: block; }
+    .hero-sub-item:not(:last-child)::after { content: ' · '; }
 
     .hero-scroll {
       display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -548,6 +550,9 @@
       .nav-right { gap: 16px; }
       .nav-link { font-size: 11px; }
       .hero-content { padding: 110px 20px 32px; }
+      .hero-sub-line { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+      .hero-sub-line + .hero-sub-line { margin-top: 6px; }
+      .hero-sub-item:not(:last-child)::after { content: none; }
       .section-header { padding: 24px 20px 0; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card { aspect-ratio: 4/3; }
@@ -592,8 +597,12 @@
       <span class="hero-h1-word">Direction.</span>
     </h1>
     <p class="hero-sub">
-      Product Stylist · Interaction Designer · Art Director<br>
-      Freelance Creative · SMC IxD Bachelor Student
+      <span class="hero-sub-line">
+        <span class="hero-sub-item">Product Stylist</span><span class="hero-sub-item">Interaction Designer</span><span class="hero-sub-item">Art Director</span>
+      </span>
+      <span class="hero-sub-line">
+        <span class="hero-sub-item">Freelance Creative</span><span class="hero-sub-item">SMC IxD Bachelor Student</span>
+      </span>
     </p>
     <a class="hero-scroll" href="#about">
       <span>Scroll down</span>
