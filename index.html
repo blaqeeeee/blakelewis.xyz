@@ -71,7 +71,9 @@
     .nav-center {
       position: absolute; left: 50%; transform: translateX(-50%);
       display: flex; align-items: center; gap: 10px;
+      text-decoration: none; transition: opacity .2s;
     }
+    .nav-center:hover { opacity: .8; }
     .avail-dot {
       width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
       animation: dot-glow 2.4s ease-in-out infinite;
@@ -403,12 +405,6 @@
       text-transform: uppercase; letter-spacing: -.02em; color: var(--text);
       line-height: 1.05; margin-bottom: 28px;
     }
-    .footer-avail {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: .5px solid var(--border-light); border-radius: 999px;
-      padding: 8px 18px; margin-bottom: 56px;
-    }
-
     .footer-links-grid {
       display: grid; grid-template-columns: repeat(4,1fr);
       gap: 1px; background: var(--border);
@@ -566,10 +562,10 @@
 <!-- NAV -->
 <nav id="mainNav">
   <a class="logo" href="/"><img class="logo-img" src="images/BL-Logo.png" alt="Blake Lewis"></a>
-  <div class="nav-center">
+  <a class="nav-center" href="#contact">
     <div class="avail-dot"></div>
-    <span class="avail-text">Available — let's talk.</span>
-  </div>
+    <span class="avail-text">Available · Let's talk.</span>
+  </a>
   <div class="nav-right">
     <a class="nav-link nav-scramble" href="#work">Work</a>
     <a class="nav-link nav-scramble" href="#about">About</a>
@@ -863,10 +859,6 @@
   <div class="footer-contact reveal">
     <p class="footer-eyebrow">[ Contact ]</p>
     <h2 class="footer-h2">Let's build something<br>that lasts.</h2>
-    <div class="footer-avail">
-      <div class="avail-dot"></div>
-      <span class="avail-text">Available — let's talk.</span>
-    </div>
 
     <div class="footer-links-grid">
       <button type="button" class="footer-link-card footer-link-card-btn" onclick="copyEmail(this)">
